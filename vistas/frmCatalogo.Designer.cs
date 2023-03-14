@@ -28,32 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbxCat = new System.Windows.Forms.PictureBox();
+            this.pbxCatalogo = new System.Windows.Forms.PictureBox();
             this.dgvCatalogo = new System.Windows.Forms.DataGridView();
             this.btnCatAgregar = new System.Windows.Forms.Button();
             this.btnCatModificar = new System.Windows.Forms.Button();
             this.btnCatEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCatalogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbxCat
+            // pbxCatalogo
             // 
-            this.pbxCat.Location = new System.Drawing.Point(529, 42);
-            this.pbxCat.Name = "pbxCat";
-            this.pbxCat.Size = new System.Drawing.Size(231, 227);
-            this.pbxCat.TabIndex = 0;
-            this.pbxCat.TabStop = false;
+            this.pbxCatalogo.Location = new System.Drawing.Point(693, 42);
+            this.pbxCatalogo.Name = "pbxCatalogo";
+            this.pbxCatalogo.Size = new System.Drawing.Size(340, 340);
+            this.pbxCatalogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxCatalogo.TabIndex = 0;
+            this.pbxCatalogo.TabStop = false;
             // 
             // dgvCatalogo
             // 
+            this.dgvCatalogo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvCatalogo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogo.Location = new System.Drawing.Point(13, 42);
+            this.dgvCatalogo.MultiSelect = false;
             this.dgvCatalogo.Name = "dgvCatalogo";
+            this.dgvCatalogo.ReadOnly = true;
             this.dgvCatalogo.RowHeadersWidth = 62;
+            this.dgvCatalogo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCatalogo.RowTemplate.Height = 28;
-            this.dgvCatalogo.Size = new System.Drawing.Size(495, 338);
+            this.dgvCatalogo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCatalogo.Size = new System.Drawing.Size(632, 340);
             this.dgvCatalogo.TabIndex = 1;
+            this.dgvCatalogo.SelectionChanged += new System.EventHandler(this.dgvCatalogo_SelectionChanged);
             // 
             // btnCatAgregar
             // 
@@ -85,16 +92,18 @@
             // frmCatalogo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1066, 552);
             this.Controls.Add(this.btnCatEliminar);
             this.Controls.Add(this.btnCatModificar);
             this.Controls.Add(this.btnCatAgregar);
             this.Controls.Add(this.dgvCatalogo);
-            this.Controls.Add(this.pbxCat);
+            this.Controls.Add(this.pbxCatalogo);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.Name = "frmCatalogo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo de productos";
             this.Load += new System.EventHandler(this.frmCatalogo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCatalogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).EndInit();
             this.ResumeLayout(false);
 
@@ -102,7 +111,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbxCat;
+        private System.Windows.Forms.PictureBox pbxCatalogo;
         private System.Windows.Forms.DataGridView dgvCatalogo;
         private System.Windows.Forms.Button btnCatAgregar;
         private System.Windows.Forms.Button btnCatModificar;
