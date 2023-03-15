@@ -32,7 +32,7 @@ namespace vistas
                 listaArticulos = negocio.listar();
                 dgvCatalogo.DataSource = listaArticulos;
                 ocultarColumnas();
-                cargarImagen(listaArticulos[0].UrlImagen);
+                cargarImagen(listaArticulos[0].ImagenUrl);
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace vistas
         }
         private void ocultarColumnas()
         {
-            dgvCatalogo.Columns["UrlImagen"].Visible = false;
+            dgvCatalogo.Columns["ImagenUrl"].Visible = false;
             dgvCatalogo.Columns["Id"].Visible = false;
         }
         private void cargarImagen(string imagen)
@@ -62,8 +62,15 @@ namespace vistas
             if (dgvCatalogo.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.UrlImagen);
+                cargarImagen(seleccionado.ImagenUrl);
             }
+        }
+
+        private void btnCatAgregar_Click(object sender, EventArgs e)
+        {
+            frmAltaArticulo alta = new frmAltaArticulo();
+            alta.ShowDialog();
+            cargar();
         }
     }
 }

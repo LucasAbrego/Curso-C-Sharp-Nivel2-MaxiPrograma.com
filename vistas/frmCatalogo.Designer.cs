@@ -70,6 +70,7 @@
             this.btnCatAgregar.TabIndex = 2;
             this.btnCatAgregar.Text = "Agregar";
             this.btnCatAgregar.UseVisualStyleBackColor = true;
+            this.btnCatAgregar.Click += new System.EventHandler(this.btnCatAgregar_Click);
             // 
             // btnCatModificar
             // 
