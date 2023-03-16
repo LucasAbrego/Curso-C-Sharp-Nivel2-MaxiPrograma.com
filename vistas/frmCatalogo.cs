@@ -68,8 +68,18 @@ namespace vistas
 
         private void btnCatAgregar_Click(object sender, EventArgs e)
         {
-            frmAltaArticulo alta = new frmAltaArticulo();
-            alta.ShowDialog();
+            frmAltaArticulo altaAgregar = new frmAltaArticulo();
+            altaAgregar.ShowDialog();
+            cargar();
+        }
+
+        private void btnCatModificar_Click(object sender, EventArgs e)
+        {
+            Articulo artSeleccionado;
+            artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+
+            frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado); ;
+            altaModificar.ShowDialog();
             cargar();
         }
     }

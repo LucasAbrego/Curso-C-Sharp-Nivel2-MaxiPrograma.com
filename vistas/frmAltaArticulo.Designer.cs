@@ -104,9 +104,10 @@
             this.btnAceptarAlta.Location = new System.Drawing.Point(65, 388);
             this.btnAceptarAlta.Name = "btnAceptarAlta";
             this.btnAceptarAlta.Size = new System.Drawing.Size(128, 48);
-            this.btnAceptarAlta.TabIndex = 5;
+            this.btnAceptarAlta.TabIndex = 7;
             this.btnAceptarAlta.Text = "Aceptar";
             this.btnAceptarAlta.UseVisualStyleBackColor = true;
+            this.btnAceptarAlta.Click += new System.EventHandler(this.btnAceptarAlta_Click);
             // 
             // btnCancelarAlta
             // 
@@ -114,16 +115,17 @@
             this.btnCancelarAlta.Location = new System.Drawing.Point(280, 388);
             this.btnCancelarAlta.Name = "btnCancelarAlta";
             this.btnCancelarAlta.Size = new System.Drawing.Size(128, 48);
-            this.btnCancelarAlta.TabIndex = 6;
+            this.btnCancelarAlta.TabIndex = 8;
             this.btnCancelarAlta.Text = "Cancelar";
             this.btnCancelarAlta.UseVisualStyleBackColor = true;
-            this.btnCancelarAlta.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancelarAlta.Click += new System.EventHandler(this.btnCancelarAlta_Click);
             // 
             // pbxAlta
             // 
-            this.pbxAlta.Location = new System.Drawing.Point(511, 52);
+            this.pbxAlta.Location = new System.Drawing.Point(477, 25);
             this.pbxAlta.Name = "pbxAlta";
-            this.pbxAlta.Size = new System.Drawing.Size(294, 278);
+            this.pbxAlta.Size = new System.Drawing.Size(352, 351);
+            this.pbxAlta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxAlta.TabIndex = 7;
             this.pbxAlta.TabStop = false;
             // 
@@ -133,7 +135,7 @@
             this.txtNombre.Location = new System.Drawing.Point(229, 86);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(242, 35);
-            this.txtNombre.TabIndex = 8;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtCodigo
             // 
@@ -141,7 +143,7 @@
             this.txtCodigo.Location = new System.Drawing.Point(229, 25);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(242, 35);
-            this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabIndex = 0;
             // 
             // txtDescripcion
             // 
@@ -149,7 +151,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(229, 142);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(242, 35);
-            this.txtDescripcion.TabIndex = 10;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // txtImagenUrl
             // 
@@ -157,7 +159,8 @@
             this.txtImagenUrl.Location = new System.Drawing.Point(229, 289);
             this.txtImagenUrl.Name = "txtImagenUrl";
             this.txtImagenUrl.Size = new System.Drawing.Size(242, 35);
-            this.txtImagenUrl.TabIndex = 11;
+            this.txtImagenUrl.TabIndex = 5;
+            this.txtImagenUrl.Leave += new System.EventHandler(this.txtImagenUrl_Leave);
             // 
             // txtPrecio
             // 
@@ -165,25 +168,27 @@
             this.txtPrecio.Location = new System.Drawing.Point(229, 341);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(242, 35);
-            this.txtPrecio.TabIndex = 12;
+            this.txtPrecio.TabIndex = 6;
             // 
             // cboMarca
             // 
+            this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cboMarca.FormattingEnabled = true;
             this.cboMarca.Location = new System.Drawing.Point(229, 198);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(242, 37);
-            this.cboMarca.TabIndex = 13;
+            this.cboMarca.TabIndex = 3;
             // 
             // cboCategoria
             // 
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(229, 242);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(242, 37);
-            this.cboCategoria.TabIndex = 14;
+            this.cboCategoria.TabIndex = 4;
             // 
             // lbCategoria
             // 
@@ -209,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 450);
+            this.ClientSize = new System.Drawing.Size(860, 450);
             this.Controls.Add(this.lbCategoria);
             this.Controls.Add(this.lbMarca);
             this.Controls.Add(this.cboCategoria);

@@ -80,6 +80,7 @@
             this.btnCatModificar.TabIndex = 3;
             this.btnCatModificar.Text = "Modificar";
             this.btnCatModificar.UseVisualStyleBackColor = true;
+            this.btnCatModificar.Click += new System.EventHandler(this.btnCatModificar_Click);
             // 
             // btnCatEliminar
             // 
