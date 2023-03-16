@@ -46,8 +46,10 @@ namespace vistas
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    cboMarca.SelectedValue = articulo.Marca.Id;
-                    cboCategoria.SelectedValue = articulo.Categoria.Id;
+                    if (articulo.Marca != null)
+                        cboMarca.SelectedValue = articulo.Marca.Id;
+                    if (articulo.Categoria != null)
+                        cboCategoria.SelectedValue = articulo.Categoria.Id;
                     txtImagenUrl.Text = articulo.ImagenUrl;
                     cargarImagen(articulo.ImagenUrl);
                     txtPrecio.Text = articulo.Precio.ToString();
