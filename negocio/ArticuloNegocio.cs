@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -99,6 +100,21 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+        public void eliminar(int idArt)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from ARTICULOS where Id = @id");
+                datos.setearParametro("@id", idArt);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

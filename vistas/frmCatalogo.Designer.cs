@@ -90,6 +90,7 @@
             this.btnCatEliminar.TabIndex = 4;
             this.btnCatEliminar.Text = "Eliminar";
             this.btnCatEliminar.UseVisualStyleBackColor = true;
+            this.btnCatEliminar.Click += new System.EventHandler(this.btnCatEliminar_Click);
             // 
             // frmCatalogo
             // 

@@ -82,5 +82,26 @@ namespace vistas
             altaModificar.ShowDialog();
             cargar();
         }
+
+        private void btnCatEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio artNegocio = new ArticuloNegocio();
+            Articulo artSeleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("El artículo se eliminará de forma PERMANENTE ¿Desea continuar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                if (respuesta == DialogResult.Yes)
+                {
+                    artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+                    artNegocio.eliminar(artSeleccionado.Id);
+                }
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
