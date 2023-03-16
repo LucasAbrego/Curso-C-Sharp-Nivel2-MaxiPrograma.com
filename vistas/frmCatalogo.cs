@@ -23,6 +23,8 @@ namespace vistas
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
+            cargarDesplegables();
+            
         }
         private void cargar()
         {
@@ -39,6 +41,24 @@ namespace vistas
                 MessageBox.Show(ex.ToString());
             }
             
+        }
+        private void cargarDesplegables()
+        {
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            Marca marcaTodos = new Marca(0, "Todos"); ;
+            List<Marca> marcasCboLista = marcaNegocio.listar();
+            marcasCboLista.Insert(0, marcaTodos);
+            cboMarcaCat.DataSource = marcasCboLista;
+            cboMarcaCat.ValueMember = "Id";
+            cboMarcaCat.DisplayMember = "Descripcion";
+
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            Categoria categoriaTodos = new Categoria(0, "Todos");
+            List<Categoria> categoriasCboLista = categoriaNegocio.listar();
+            categoriasCboLista.Insert(0, categoriaTodos);
+            cboCategoriaCat.DataSource = categoriasCboLista;
+            cboCategoriaCat.ValueMember = "Id";
+            cboCategoriaCat.DisplayMember = "Descripcion";
         }
         private void ocultarColumnas()
         {
@@ -102,6 +122,25 @@ namespace vistas
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaArtBusqueda;
+            string busqueda = txtBuscarCat.Text;
+
+            if (busqueda.Length >= 2)
+            {
+                listaArtBusqueda = listaArticulos.FindAll(x => (x.Nombre == null ? false : x.Nombre.ToUpper().Contains(busqueda.ToUpper())) || (x.Codigo == null ? false : x.Codigo.ToUpper().Contains(busqueda.ToUpper())));
+            }
+            else
+            {
+                listaArtBusqueda = listaArticulos;
+            }
+
+            dgvCatalogo.DataSource = null;
+            dgvCatalogo.DataSource = listaArtBusqueda;
+            ocultarColumnas();
         }
     }
 }
