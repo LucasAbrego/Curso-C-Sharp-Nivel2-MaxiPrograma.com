@@ -21,10 +21,7 @@ namespace negocio
 
                 while (datos.Lector.Read())
                 {
-                    Marca aux = new Marca();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-
+                    Marca aux = new Marca((int)datos.Lector["Id"], (string)datos.Lector["Descripcion"]);
                     lista.Add(aux);
                 }
                 return lista;
@@ -37,6 +34,13 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public List<Marca> listarMarcasCbo()
+        {
+            Marca marcaTodos = new Marca(0, "Todos");
+            List<Marca> listaMarcas = listar();
+            listaMarcas.Insert(0, marcaTodos);
+            return listaMarcas;
         }
     }
 }

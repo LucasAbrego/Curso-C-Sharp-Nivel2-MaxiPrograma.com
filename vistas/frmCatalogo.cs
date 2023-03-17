@@ -15,6 +15,9 @@ namespace vistas
     public partial class frmCatalogo : Form
     {
         private List<Articulo> listaArticulos;
+        private Categoria categoriaSeleccionada;
+        private Marca marcaSeleccionada;
+        
         public frmCatalogo()
         {
             InitializeComponent();
@@ -23,42 +26,43 @@ namespace vistas
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-            cargarDesplegables();
-            
         }
         private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                cargarDesplegables();
                 listaArticulos = negocio.listar();
                 dgvCatalogo.DataSource = listaArticulos;
                 ocultarColumnas();
                 cargarImagen(listaArticulos[0].ImagenUrl);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            
         }
         private void cargarDesplegables()
         {
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
-            Marca marcaTodos = new Marca(0, "Todos"); ;
-            List<Marca> marcasCboLista = marcaNegocio.listar();
-            marcasCboLista.Insert(0, marcaTodos);
-            cboMarcaCat.DataSource = marcasCboLista;
-            cboMarcaCat.ValueMember = "Id";
-            cboMarcaCat.DisplayMember = "Descripcion";
+            try
+            {
+                MarcaNegocio marcaNegocio = new MarcaNegocio();
+                cboMarcaCat.DataSource = marcaNegocio.listarMarcasCbo();
+                cboMarcaCat.ValueMember = "Id";
+                cboMarcaCat.DisplayMember = "Descripcion";
 
-            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            Categoria categoriaTodos = new Categoria(0, "Todos");
-            List<Categoria> categoriasCboLista = categoriaNegocio.listar();
-            categoriasCboLista.Insert(0, categoriaTodos);
-            cboCategoriaCat.DataSource = categoriasCboLista;
-            cboCategoriaCat.ValueMember = "Id";
-            cboCategoriaCat.DisplayMember = "Descripcion";
+                CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+                cboCategoriaCat.DataSource = categoriaNegocio.listarCategoriasCbo(); ;
+                cboCategoriaCat.ValueMember = "Id";
+                cboCategoriaCat.DisplayMember = "Descripcion";
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         private void ocultarColumnas()
         {
@@ -142,5 +146,36 @@ namespace vistas
             dgvCatalogo.DataSource = listaArtBusqueda;
             ocultarColumnas();
         }
+
+        private void cboMarcaCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Marca Cambio");
+            marcaSeleccionada = (Marca)cboMarcaCat.SelectedItem;
+            if (marcaSeleccionada != null && categoriaSeleccionada != null)
+                busquedaAvanzada();
+        }
+
+        private void cboCategoriaCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Categoria Cambio");
+            categoriaSeleccionada = (Categoria)cboCategoriaCat.SelectedItem;
+            if (marcaSeleccionada != null && categoriaSeleccionada != null)
+                busquedaAvanzada();
+        }
+
+        private void busquedaAvanzada()
+        {
+            ArticuloNegocio negocioBusquedaAv = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = negocioBusquedaAv.filtrar(marcaSeleccionada, categoriaSeleccionada);
+                dgvCatalogo.DataSource = listaArticulos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
+

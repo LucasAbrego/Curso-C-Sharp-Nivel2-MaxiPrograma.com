@@ -37,15 +37,17 @@
             this.lbMarcaCat = new System.Windows.Forms.Label();
             this.lbCategoríaCat = new System.Windows.Forms.Label();
             this.lbPrecioCat = new System.Windows.Forms.Label();
-            this.cboMarcaCat = new System.Windows.Forms.ComboBox();
             this.cboCategoriaCat = new System.Windows.Forms.ComboBox();
+            this.gbxBusquedaAvanzada = new System.Windows.Forms.GroupBox();
+            this.cboMarcaCat = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCatalogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).BeginInit();
+            this.gbxBusquedaAvanzada.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbxCatalogo
             // 
-            this.pbxCatalogo.Location = new System.Drawing.Point(692, 93);
+            this.pbxCatalogo.Location = new System.Drawing.Point(681, 200);
             this.pbxCatalogo.Name = "pbxCatalogo";
             this.pbxCatalogo.Size = new System.Drawing.Size(340, 340);
             this.pbxCatalogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -109,7 +111,7 @@
             // lbMarcaCat
             // 
             this.lbMarcaCat.AutoSize = true;
-            this.lbMarcaCat.Location = new System.Drawing.Point(247, 39);
+            this.lbMarcaCat.Location = new System.Drawing.Point(34, 56);
             this.lbMarcaCat.Name = "lbMarcaCat";
             this.lbMarcaCat.Size = new System.Drawing.Size(56, 20);
             this.lbMarcaCat.TabIndex = 6;
@@ -118,7 +120,7 @@
             // lbCategoríaCat
             // 
             this.lbCategoríaCat.AutoSize = true;
-            this.lbCategoríaCat.Location = new System.Drawing.Point(504, 39);
+            this.lbCategoríaCat.Location = new System.Drawing.Point(34, 109);
             this.lbCategoríaCat.Name = "lbCategoríaCat";
             this.lbCategoríaCat.Size = new System.Drawing.Size(81, 20);
             this.lbCategoríaCat.TabIndex = 6;
@@ -127,37 +129,49 @@
             // lbPrecioCat
             // 
             this.lbPrecioCat.AutoSize = true;
-            this.lbPrecioCat.Location = new System.Drawing.Point(810, 39);
+            this.lbPrecioCat.Location = new System.Drawing.Point(606, 70);
             this.lbPrecioCat.Name = "lbPrecioCat";
             this.lbPrecioCat.Size = new System.Drawing.Size(57, 20);
             this.lbPrecioCat.TabIndex = 6;
             this.lbPrecioCat.Text = "Precio";
             // 
-            // cboMarcaCat
-            // 
-            this.cboMarcaCat.FormattingEnabled = true;
-            this.cboMarcaCat.Location = new System.Drawing.Point(310, 36);
-            this.cboMarcaCat.Name = "cboMarcaCat";
-            this.cboMarcaCat.Size = new System.Drawing.Size(121, 28);
-            this.cboMarcaCat.TabIndex = 7;
-            // 
             // cboCategoriaCat
             // 
             this.cboCategoriaCat.FormattingEnabled = true;
-            this.cboCategoriaCat.Location = new System.Drawing.Point(591, 37);
+            this.cboCategoriaCat.Location = new System.Drawing.Point(140, 106);
             this.cboCategoriaCat.Name = "cboCategoriaCat";
             this.cboCategoriaCat.Size = new System.Drawing.Size(121, 28);
             this.cboCategoriaCat.TabIndex = 8;
+            this.cboCategoriaCat.SelectedIndexChanged += new System.EventHandler(this.cboCategoriaCat_SelectedIndexChanged);
+            // 
+            // gbxBusquedaAvanzada
+            // 
+            this.gbxBusquedaAvanzada.Controls.Add(this.cboMarcaCat);
+            this.gbxBusquedaAvanzada.Controls.Add(this.cboCategoriaCat);
+            this.gbxBusquedaAvanzada.Controls.Add(this.lbMarcaCat);
+            this.gbxBusquedaAvanzada.Controls.Add(this.lbCategoríaCat);
+            this.gbxBusquedaAvanzada.Location = new System.Drawing.Point(681, 25);
+            this.gbxBusquedaAvanzada.Name = "gbxBusquedaAvanzada";
+            this.gbxBusquedaAvanzada.Size = new System.Drawing.Size(340, 155);
+            this.gbxBusquedaAvanzada.TabIndex = 9;
+            this.gbxBusquedaAvanzada.TabStop = false;
+            this.gbxBusquedaAvanzada.Text = "Busqueda Avanzada";
+            // 
+            // cboMarcaCat
+            // 
+            this.cboMarcaCat.FormattingEnabled = true;
+            this.cboMarcaCat.Location = new System.Drawing.Point(140, 54);
+            this.cboMarcaCat.Name = "cboMarcaCat";
+            this.cboMarcaCat.Size = new System.Drawing.Size(121, 28);
+            this.cboMarcaCat.TabIndex = 8;
+            this.cboMarcaCat.SelectedIndexChanged += new System.EventHandler(this.cboMarcaCat_SelectedIndexChanged);
             // 
             // frmCatalogo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1066, 552);
-            this.Controls.Add(this.cboCategoriaCat);
-            this.Controls.Add(this.cboMarcaCat);
+            this.Controls.Add(this.gbxBusquedaAvanzada);
             this.Controls.Add(this.lbPrecioCat);
-            this.Controls.Add(this.lbCategoríaCat);
-            this.Controls.Add(this.lbMarcaCat);
             this.Controls.Add(this.txtBuscarCat);
             this.Controls.Add(this.btnEliminarCat);
             this.Controls.Add(this.btnModificarCat);
@@ -171,6 +185,8 @@
             this.Load += new System.EventHandler(this.frmCatalogo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxCatalogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).EndInit();
+            this.gbxBusquedaAvanzada.ResumeLayout(false);
+            this.gbxBusquedaAvanzada.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,8 +203,9 @@
         private System.Windows.Forms.Label lbMarcaCat;
         private System.Windows.Forms.Label lbCategoríaCat;
         private System.Windows.Forms.Label lbPrecioCat;
-        private System.Windows.Forms.ComboBox cboMarcaCat;
         private System.Windows.Forms.ComboBox cboCategoriaCat;
+        private System.Windows.Forms.GroupBox gbxBusquedaAvanzada;
+        private System.Windows.Forms.ComboBox cboMarcaCat;
     }
 }
 

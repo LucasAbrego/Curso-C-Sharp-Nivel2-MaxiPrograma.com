@@ -22,10 +22,7 @@ namespace negocio
 
                 while (datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-
+                    Categoria aux = new Categoria((int)datos.Lector["Id"], (string)datos.Lector["Descripcion"]);
                     lista.Add(aux);
                 }
                 return lista;
@@ -38,6 +35,13 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public List<Categoria> listarCategoriasCbo()
+        {
+            Categoria categoriaTodos = new Categoria(0, "Todos");
+            List<Categoria> listaCategorias = listar();
+            listaCategorias.Insert(0, categoriaTodos);
+            return listaCategorias;
         }
     }
 }
