@@ -137,6 +137,7 @@
             // 
             // cboCategoriaCat
             // 
+            this.cboCategoriaCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoriaCat.FormattingEnabled = true;
             this.cboCategoriaCat.Location = new System.Drawing.Point(140, 106);
             this.cboCategoriaCat.Name = "cboCategoriaCat";
@@ -159,6 +160,7 @@
             // 
             // cboMarcaCat
             // 
+            this.cboMarcaCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarcaCat.FormattingEnabled = true;
             this.cboMarcaCat.Location = new System.Drawing.Point(140, 54);
             this.cboMarcaCat.Name = "cboMarcaCat";

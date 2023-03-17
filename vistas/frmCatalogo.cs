@@ -37,7 +37,6 @@ namespace vistas
                 dgvCatalogo.DataSource = listaArticulos;
                 ocultarColumnas();
                 cargarImagen(listaArticulos[0].ImagenUrl);
-
             }
             catch (Exception ex)
             {
@@ -149,7 +148,6 @@ namespace vistas
 
         private void cboMarcaCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Marca Cambio");
             marcaSeleccionada = (Marca)cboMarcaCat.SelectedItem;
             if (marcaSeleccionada != null && categoriaSeleccionada != null)
                 busquedaAvanzada();
@@ -157,7 +155,6 @@ namespace vistas
 
         private void cboCategoriaCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Categoria Cambio");
             categoriaSeleccionada = (Categoria)cboCategoriaCat.SelectedItem;
             if (marcaSeleccionada != null && categoriaSeleccionada != null)
                 busquedaAvanzada();
@@ -168,7 +165,7 @@ namespace vistas
             ArticuloNegocio negocioBusquedaAv = new ArticuloNegocio();
             try
             {
-                listaArticulos = negocioBusquedaAv.filtrar(marcaSeleccionada, categoriaSeleccionada);
+                listaArticulos = negocioBusquedaAv.filtrarAvanzado(marcaSeleccionada, categoriaSeleccionada);
                 dgvCatalogo.DataSource = listaArticulos;
             }
             catch (Exception ex)
