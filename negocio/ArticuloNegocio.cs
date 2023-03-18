@@ -147,82 +147,97 @@ namespace negocio
                 throw ex;
             }
         }
-        public List<Articulo> filtrarAvanzado(Marca marc, Categoria cat)
+        public List<Articulo> filtrar(Marca marc, Categoria cat, string minimo, string maximo)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Articulo> listaFiltrada = new List<Articulo>();
             string consulta = "SELECT A.Id, Codigo, Nombre, A.Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio, M.Descripcion Marca, C.Descripcion Categoria from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdCategoria = C.Id and A.IdMarca = M.id";
-            string consultaCategoriaMarca;
-            string consultaPrecio;
-
+            string consultaMarcaCategoria = filtrarMarcaCategoria(marc, cat);
+            string consultaPrecio = filtrarPorPrecio(minimo, maximo);
+            
             try
             {
-                if (marc.Id == 0 && cat.Id == 0)
-                    return listar(); //Para traer artículos con categorías y marcas nulas
-                else
+                datos.setearConsulta(consulta + consultaMarcaCategoria + consultaPrecio);
+                datos.setearParametro("@idMarca", marc.Id);
+                datos.setearParametro("@idCategoria", cat.Id);
+                if (minimo.Length > 0)
                 {
-                    if (marc.Id != 0 && cat.Id == 0)
-                        consultaCategoriaMarca = " and M.id = @idMarca;";
-                    else if (marc.Id == 0 && cat.Id != 0)
-                        consultaCategoriaMarca = " and C.id = @idCategoria;";
-                    else
-                        consultaCategoriaMarca = " and M.id = @idMarca and C.id = @idCategoria;";
-
-                    datos.setearConsulta(consulta + consultaCategoriaMarca);
-                    datos.setearParametro("@idMarca", marc.Id);
-                    datos.setearParametro("@idCategoria", cat.Id);
-                    try
-                    {
-                        datos.ejecutarLectura();
-                        while (datos.Lector.Read())
-                        {
-                            Articulo aux = new Articulo();
-                            aux.Id = (int)datos.Lector["Id"];
-                            if (!(datos.Lector["Codigo"] is DBNull))
-                                aux.Codigo = (string)datos.Lector["Codigo"];
-                            if (!(datos.Lector["Nombre"] is DBNull))
-                                aux.Nombre = (string)datos.Lector["Nombre"];
-                            if (!(datos.Lector["Descripcion"] is DBNull))
-                                aux.Descripcion = (string)datos.Lector["Descripcion"];
-                            if (!(datos.Lector["ImagenUrl"] is DBNull))
-                                aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
-                            aux.Marca = new Marca();
-                            if (marc.Id != 0)
-                                aux.Marca = marc;
-                            else
-                            {
-                                aux.Marca.Id = (int)datos.Lector["IdMarca"];
-                                aux.Marca.Descripcion = (string)datos.Lector["Marca"];
-                            }
-                            aux.Categoria = new Categoria();
-                            if (cat.Id != 0)
-                                aux.Categoria = cat;
-                            else
-                            {
-                                aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                                aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                            }
-                            if (!(datos.Lector["Precio"] is DBNull))
-                                aux.Precio = (decimal)datos.Lector["Precio"];
-
-                            listaFiltrada.Add(aux);
-                        }
-                        return listaFiltrada;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        datos.cerrarConexion();
-                    }
+                    decimal minimoD = decimal.Parse(minimo);
+                    datos.setearParametro("@minimo", minimoD);
                 }
+                if (maximo.Length > 0)
+                {
+                    decimal maximoD = decimal.Parse(maximo);
+                    datos.setearParametro("@maximo", maximoD);
+                }
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    if (!(datos.Lector["Codigo"] is DBNull))
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.Marca = new Marca();
+                    if (marc.Id != 0)
+                        aux.Marca = marc;
+                    else
+                    {
+                        aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                        aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    }
+                    aux.Categoria = new Categoria();
+                    if (cat.Id != 0)
+                        aux.Categoria = cat;
+                    else
+                    {
+                        aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    }
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    listaFiltrada.Add(aux);
+                }
+                return listaFiltrada;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public string filtrarMarcaCategoria(Marca marc, Categoria cat)
+        {
+            if (marc.Id == 0 && cat.Id == 0)
+                return "";
+            else if (marc.Id != 0 && cat.Id == 0)
+                return " and M.id = @idMarca";
+            else if (marc.Id == 0 && cat.Id != 0)
+                return " and C.id = @idCategoria";
+            else
+                return " and M.id = @idMarca and C.id = @idCategoria";
+        }
+        public string filtrarPorPrecio(string minimo, string maximo)
+        {
+            if (maximo.Length == 0 && minimo.Length == 0)
+                return ";";
+            else if (maximo.Length == 0 && minimo.Length > 0)
+                return " and A.Precio > @minimo;";
+            else if (maximo.Length > 0 && minimo.Length == 0)
+                return " and A.Precio < @maximo";
+            else  
+                return " and A.Precio > @minimo and A.Precio < @maximo";
         }
     }
 }

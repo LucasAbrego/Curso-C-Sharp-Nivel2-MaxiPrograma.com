@@ -36,18 +36,26 @@
             this.txtBuscarCat = new System.Windows.Forms.TextBox();
             this.lbMarcaCat = new System.Windows.Forms.Label();
             this.lbCategoríaCat = new System.Windows.Forms.Label();
-            this.lbPrecioCat = new System.Windows.Forms.Label();
+            this.lbMinimo = new System.Windows.Forms.Label();
             this.cboCategoriaCat = new System.Windows.Forms.ComboBox();
             this.gbxBusquedaAvanzada = new System.Windows.Forms.GroupBox();
+            this.btnTodoCat = new System.Windows.Forms.Button();
+            this.btnFiltrarCat = new System.Windows.Forms.Button();
+            this.gbxPrecio = new System.Windows.Forms.GroupBox();
+            this.txtPrecioMaximo = new System.Windows.Forms.TextBox();
+            this.txtPrecioMinimo = new System.Windows.Forms.TextBox();
+            this.lbMaximo = new System.Windows.Forms.Label();
             this.cboMarcaCat = new System.Windows.Forms.ComboBox();
+            this.btnLimpiarTxtBusqueda = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCatalogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).BeginInit();
             this.gbxBusquedaAvanzada.SuspendLayout();
+            this.gbxPrecio.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbxCatalogo
             // 
-            this.pbxCatalogo.Location = new System.Drawing.Point(681, 200);
+            this.pbxCatalogo.Location = new System.Drawing.Point(670, 200);
             this.pbxCatalogo.Name = "pbxCatalogo";
             this.pbxCatalogo.Size = new System.Drawing.Size(340, 340);
             this.pbxCatalogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -58,7 +66,7 @@
             // 
             this.dgvCatalogo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvCatalogo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCatalogo.Location = new System.Drawing.Point(12, 93);
+            this.dgvCatalogo.Location = new System.Drawing.Point(12, 200);
             this.dgvCatalogo.MultiSelect = false;
             this.dgvCatalogo.Name = "dgvCatalogo";
             this.dgvCatalogo.ReadOnly = true;
@@ -72,7 +80,7 @@
             // 
             // btnAgregarCat
             // 
-            this.btnAgregarCat.Location = new System.Drawing.Point(12, 449);
+            this.btnAgregarCat.Location = new System.Drawing.Point(12, 12);
             this.btnAgregarCat.Name = "btnAgregarCat";
             this.btnAgregarCat.Size = new System.Drawing.Size(120, 40);
             this.btnAgregarCat.TabIndex = 2;
@@ -82,7 +90,7 @@
             // 
             // btnModificarCat
             // 
-            this.btnModificarCat.Location = new System.Drawing.Point(151, 449);
+            this.btnModificarCat.Location = new System.Drawing.Point(12, 58);
             this.btnModificarCat.Name = "btnModificarCat";
             this.btnModificarCat.Size = new System.Drawing.Size(120, 40);
             this.btnModificarCat.TabIndex = 3;
@@ -92,7 +100,7 @@
             // 
             // btnEliminarCat
             // 
-            this.btnEliminarCat.Location = new System.Drawing.Point(289, 449);
+            this.btnEliminarCat.Location = new System.Drawing.Point(12, 104);
             this.btnEliminarCat.Name = "btnEliminarCat";
             this.btnEliminarCat.Size = new System.Drawing.Size(120, 40);
             this.btnEliminarCat.TabIndex = 4;
@@ -102,16 +110,16 @@
             // 
             // txtBuscarCat
             // 
-            this.txtBuscarCat.Location = new System.Drawing.Point(12, 39);
+            this.txtBuscarCat.Location = new System.Drawing.Point(49, 165);
             this.txtBuscarCat.Name = "txtBuscarCat";
-            this.txtBuscarCat.Size = new System.Drawing.Size(185, 26);
+            this.txtBuscarCat.Size = new System.Drawing.Size(961, 26);
             this.txtBuscarCat.TabIndex = 5;
             this.txtBuscarCat.TextChanged += new System.EventHandler(this.txtBuscarCatalogo_TextChanged);
             // 
             // lbMarcaCat
             // 
             this.lbMarcaCat.AutoSize = true;
-            this.lbMarcaCat.Location = new System.Drawing.Point(34, 56);
+            this.lbMarcaCat.Location = new System.Drawing.Point(16, 43);
             this.lbMarcaCat.Name = "lbMarcaCat";
             this.lbMarcaCat.Size = new System.Drawing.Size(56, 20);
             this.lbMarcaCat.TabIndex = 6;
@@ -120,60 +128,127 @@
             // lbCategoríaCat
             // 
             this.lbCategoríaCat.AutoSize = true;
-            this.lbCategoríaCat.Location = new System.Drawing.Point(34, 109);
+            this.lbCategoríaCat.Location = new System.Drawing.Point(6, 86);
             this.lbCategoríaCat.Name = "lbCategoríaCat";
             this.lbCategoríaCat.Size = new System.Drawing.Size(81, 20);
             this.lbCategoríaCat.TabIndex = 6;
             this.lbCategoríaCat.Text = "Categoría";
             // 
-            // lbPrecioCat
+            // lbMinimo
             // 
-            this.lbPrecioCat.AutoSize = true;
-            this.lbPrecioCat.Location = new System.Drawing.Point(606, 70);
-            this.lbPrecioCat.Name = "lbPrecioCat";
-            this.lbPrecioCat.Size = new System.Drawing.Size(57, 20);
-            this.lbPrecioCat.TabIndex = 6;
-            this.lbPrecioCat.Text = "Precio";
+            this.lbMinimo.AutoSize = true;
+            this.lbMinimo.Location = new System.Drawing.Point(17, 28);
+            this.lbMinimo.Name = "lbMinimo";
+            this.lbMinimo.Size = new System.Drawing.Size(63, 20);
+            this.lbMinimo.TabIndex = 6;
+            this.lbMinimo.Text = "Mínimo";
             // 
             // cboCategoriaCat
             // 
             this.cboCategoriaCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoriaCat.FormattingEnabled = true;
-            this.cboCategoriaCat.Location = new System.Drawing.Point(140, 106);
+            this.cboCategoriaCat.Location = new System.Drawing.Point(93, 83);
             this.cboCategoriaCat.Name = "cboCategoriaCat";
-            this.cboCategoriaCat.Size = new System.Drawing.Size(121, 28);
+            this.cboCategoriaCat.Size = new System.Drawing.Size(170, 28);
             this.cboCategoriaCat.TabIndex = 8;
-            this.cboCategoriaCat.SelectedIndexChanged += new System.EventHandler(this.cboCategoriaCat_SelectedIndexChanged);
             // 
             // gbxBusquedaAvanzada
             // 
+            this.gbxBusquedaAvanzada.Controls.Add(this.btnTodoCat);
+            this.gbxBusquedaAvanzada.Controls.Add(this.btnFiltrarCat);
+            this.gbxBusquedaAvanzada.Controls.Add(this.gbxPrecio);
             this.gbxBusquedaAvanzada.Controls.Add(this.cboMarcaCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.cboCategoriaCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.lbMarcaCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.lbCategoríaCat);
-            this.gbxBusquedaAvanzada.Location = new System.Drawing.Point(681, 25);
+            this.gbxBusquedaAvanzada.Location = new System.Drawing.Point(220, 12);
             this.gbxBusquedaAvanzada.Name = "gbxBusquedaAvanzada";
-            this.gbxBusquedaAvanzada.Size = new System.Drawing.Size(340, 155);
+            this.gbxBusquedaAvanzada.Size = new System.Drawing.Size(790, 135);
             this.gbxBusquedaAvanzada.TabIndex = 9;
             this.gbxBusquedaAvanzada.TabStop = false;
             this.gbxBusquedaAvanzada.Text = "Busqueda Avanzada";
+            // 
+            // btnTodoCat
+            // 
+            this.btnTodoCat.Location = new System.Drawing.Point(616, 25);
+            this.btnTodoCat.Name = "btnTodoCat";
+            this.btnTodoCat.Size = new System.Drawing.Size(149, 43);
+            this.btnTodoCat.TabIndex = 10;
+            this.btnTodoCat.Text = "Traer Todo";
+            this.btnTodoCat.UseVisualStyleBackColor = true;
+            this.btnTodoCat.Click += new System.EventHandler(this.btnTodoCat_Click);
+            // 
+            // btnFiltrarCat
+            // 
+            this.btnFiltrarCat.Location = new System.Drawing.Point(616, 76);
+            this.btnFiltrarCat.Name = "btnFiltrarCat";
+            this.btnFiltrarCat.Size = new System.Drawing.Size(149, 40);
+            this.btnFiltrarCat.TabIndex = 11;
+            this.btnFiltrarCat.Text = "Filtrar";
+            this.btnFiltrarCat.UseVisualStyleBackColor = true;
+            this.btnFiltrarCat.Click += new System.EventHandler(this.btnFiltrarCat_Click);
+            // 
+            // gbxPrecio
+            // 
+            this.gbxPrecio.Controls.Add(this.txtPrecioMaximo);
+            this.gbxPrecio.Controls.Add(this.txtPrecioMinimo);
+            this.gbxPrecio.Controls.Add(this.lbMaximo);
+            this.gbxPrecio.Controls.Add(this.lbMinimo);
+            this.gbxPrecio.Location = new System.Drawing.Point(298, 15);
+            this.gbxPrecio.Name = "gbxPrecio";
+            this.gbxPrecio.Size = new System.Drawing.Size(283, 108);
+            this.gbxPrecio.TabIndex = 9;
+            this.gbxPrecio.TabStop = false;
+            this.gbxPrecio.Text = "Precio";
+            // 
+            // txtPrecioMaximo
+            // 
+            this.txtPrecioMaximo.Location = new System.Drawing.Point(97, 68);
+            this.txtPrecioMaximo.Name = "txtPrecioMaximo";
+            this.txtPrecioMaximo.Size = new System.Drawing.Size(152, 26);
+            this.txtPrecioMaximo.TabIndex = 11;
+            // 
+            // txtPrecioMinimo
+            // 
+            this.txtPrecioMinimo.Location = new System.Drawing.Point(97, 25);
+            this.txtPrecioMinimo.Name = "txtPrecioMinimo";
+            this.txtPrecioMinimo.Size = new System.Drawing.Size(152, 26);
+            this.txtPrecioMinimo.TabIndex = 10;
+            // 
+            // lbMaximo
+            // 
+            this.lbMaximo.AutoSize = true;
+            this.lbMaximo.Location = new System.Drawing.Point(17, 71);
+            this.lbMaximo.Name = "lbMaximo";
+            this.lbMaximo.Size = new System.Drawing.Size(67, 20);
+            this.lbMaximo.TabIndex = 6;
+            this.lbMaximo.Text = "Máximo";
             // 
             // cboMarcaCat
             // 
             this.cboMarcaCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarcaCat.FormattingEnabled = true;
-            this.cboMarcaCat.Location = new System.Drawing.Point(140, 54);
+            this.cboMarcaCat.Location = new System.Drawing.Point(94, 40);
             this.cboMarcaCat.Name = "cboMarcaCat";
-            this.cboMarcaCat.Size = new System.Drawing.Size(121, 28);
+            this.cboMarcaCat.Size = new System.Drawing.Size(169, 28);
             this.cboMarcaCat.TabIndex = 8;
-            this.cboMarcaCat.SelectedIndexChanged += new System.EventHandler(this.cboMarcaCat_SelectedIndexChanged);
+            // 
+            // btnLimpiarTxtBusqueda
+            // 
+            this.btnLimpiarTxtBusqueda.Location = new System.Drawing.Point(12, 165);
+            this.btnLimpiarTxtBusqueda.Name = "btnLimpiarTxtBusqueda";
+            this.btnLimpiarTxtBusqueda.Size = new System.Drawing.Size(31, 26);
+            this.btnLimpiarTxtBusqueda.TabIndex = 10;
+            this.btnLimpiarTxtBusqueda.Text = "X";
+            this.btnLimpiarTxtBusqueda.UseVisualStyleBackColor = true;
+            this.btnLimpiarTxtBusqueda.Click += new System.EventHandler(this.btnLimpiarTxtBusqueda_Click);
             // 
             // frmCatalogo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(1066, 552);
+            this.ClientSize = new System.Drawing.Size(1035, 552);
+            this.Controls.Add(this.btnLimpiarTxtBusqueda);
             this.Controls.Add(this.gbxBusquedaAvanzada);
-            this.Controls.Add(this.lbPrecioCat);
             this.Controls.Add(this.txtBuscarCat);
             this.Controls.Add(this.btnEliminarCat);
             this.Controls.Add(this.btnModificarCat);
@@ -189,6 +264,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogo)).EndInit();
             this.gbxBusquedaAvanzada.ResumeLayout(false);
             this.gbxBusquedaAvanzada.PerformLayout();
+            this.gbxPrecio.ResumeLayout(false);
+            this.gbxPrecio.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,10 +281,17 @@
         private System.Windows.Forms.TextBox txtBuscarCat;
         private System.Windows.Forms.Label lbMarcaCat;
         private System.Windows.Forms.Label lbCategoríaCat;
-        private System.Windows.Forms.Label lbPrecioCat;
+        private System.Windows.Forms.Label lbMinimo;
         private System.Windows.Forms.ComboBox cboCategoriaCat;
         private System.Windows.Forms.GroupBox gbxBusquedaAvanzada;
         private System.Windows.Forms.ComboBox cboMarcaCat;
+        private System.Windows.Forms.GroupBox gbxPrecio;
+        private System.Windows.Forms.TextBox txtPrecioMaximo;
+        private System.Windows.Forms.TextBox txtPrecioMinimo;
+        private System.Windows.Forms.Label lbMaximo;
+        private System.Windows.Forms.Button btnTodoCat;
+        private System.Windows.Forms.Button btnFiltrarCat;
+        private System.Windows.Forms.Button btnLimpiarTxtBusqueda;
     }
 }
 

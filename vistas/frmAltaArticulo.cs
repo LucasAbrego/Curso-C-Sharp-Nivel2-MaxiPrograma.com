@@ -99,12 +99,10 @@ namespace vistas
                     artNegocio.agregar(articulo);
                     MessageBox.Show("Agregado exitosamente");
                 }
-
                 Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }

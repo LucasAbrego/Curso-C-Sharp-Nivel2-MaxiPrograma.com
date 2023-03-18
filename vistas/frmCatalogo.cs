@@ -17,7 +17,8 @@ namespace vistas
         private List<Articulo> listaArticulos;
         private Categoria categoriaSeleccionada;
         private Marca marcaSeleccionada;
-        
+        private string precioMinimo = "", precioMaximo="";
+ 
         public frmCatalogo()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace vistas
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
+            resetearFormulario();
         }
         private void cargar()
         {
@@ -72,7 +74,13 @@ namespace vistas
         {
             try
             {
-                pbxCatalogo.Load(imagen);
+                if (imagen != "sinElementos")
+                    pbxCatalogo.Load(imagen);
+                else
+                {
+                    pbxCatalogo.Image = null;
+                    pbxCatalogo.Update();
+                }
             }
             catch (Exception)
             {
@@ -99,27 +107,37 @@ namespace vistas
         private void btnCatModificar_Click(object sender, EventArgs e)
         {
             Articulo artSeleccionado;
-            artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
-
-            frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado); ;
-            altaModificar.ShowDialog();
-            cargar();
+            if (dgvCatalogo.CurrentRow != null)
+            {
+                artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+                frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado); ;
+                altaModificar.ShowDialog();
+                cargar();
+            }
+            else
+                MessageBox.Show("Seleccione el articulo que desea modificar.");
         }
 
         private void btnCatEliminar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio artNegocio = new ArticuloNegocio();
             Articulo artSeleccionado;
+            
             try
             {
-                DialogResult respuesta = MessageBox.Show("El artículo se eliminará de forma PERMANENTE ¿Desea continuar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                
-                if (respuesta == DialogResult.Yes)
+                if (dgvCatalogo.CurrentRow != null)
                 {
-                    artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
-                    artNegocio.eliminar(artSeleccionado.Id);
+                    DialogResult respuesta = MessageBox.Show("El artículo se eliminará de forma PERMANENTE ¿Desea continuar?", "Eliminar artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+                        artNegocio.eliminar(artSeleccionado.Id);
+                    }
+                    cargar();
                 }
-                cargar();
+                else
+                    MessageBox.Show("Seleccione el artículo que desea elminar.");
             }
             catch (Exception ex)
             {
@@ -128,6 +146,12 @@ namespace vistas
         }
 
         private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
+        {
+            busquedaRapida();
+        }
+
+
+        private void busquedaRapida()
         {
             List<Articulo> listaArtBusqueda;
             string busqueda = txtBuscarCat.Text;
@@ -144,34 +168,63 @@ namespace vistas
             dgvCatalogo.DataSource = null;
             dgvCatalogo.DataSource = listaArtBusqueda;
             ocultarColumnas();
+            if (listaArtBusqueda.Count == 0)
+                cargarImagen("sinElementos");
         }
-
-        private void cboMarcaCat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            marcaSeleccionada = (Marca)cboMarcaCat.SelectedItem;
-            if (marcaSeleccionada != null && categoriaSeleccionada != null)
-                busquedaAvanzada();
-        }
-
-        private void cboCategoriaCat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            categoriaSeleccionada = (Categoria)cboCategoriaCat.SelectedItem;
-            if (marcaSeleccionada != null && categoriaSeleccionada != null)
-                busquedaAvanzada();
-        }
-
         private void busquedaAvanzada()
         {
             ArticuloNegocio negocioBusquedaAv = new ArticuloNegocio();
             try
             {
-                listaArticulos = negocioBusquedaAv.filtrarAvanzado(marcaSeleccionada, categoriaSeleccionada);
-                dgvCatalogo.DataSource = listaArticulos;
+                categoriaSeleccionada = (Categoria)cboCategoriaCat.SelectedItem;
+                marcaSeleccionada = (Marca)cboMarcaCat.SelectedItem;
+                if (txtPrecioMinimo.Text.Length > 0)
+                    precioMinimo = txtPrecioMinimo.Text;
+                else
+                    precioMinimo = "";
+                if (txtPrecioMaximo.Text.Length > 0)
+                    precioMaximo = txtPrecioMaximo.Text;
+                else
+                    precioMaximo = "";
+
+                if (categoriaSeleccionada != null && marcaSeleccionada != null)
+                {
+                    listaArticulos = negocioBusquedaAv.filtrar(marcaSeleccionada, categoriaSeleccionada, precioMinimo, precioMaximo);
+                    dgvCatalogo.DataSource = listaArticulos;
+                    if (listaArticulos.Count == 0)
+                        cargarImagen("sinElementos");
+                    busquedaRapida();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnTodoCat_Click(object sender, EventArgs e)
+        {
+            cargar();
+            resetearFormulario();
+        }
+
+        private void btnFiltrarCat_Click(object sender, EventArgs e)
+        {
+            busquedaAvanzada();
+        }
+
+        private void btnLimpiarTxtBusqueda_Click(object sender, EventArgs e)
+        {
+            txtBuscarCat.Text = "";
+        }
+
+        private void resetearFormulario()
+        {
+            cboCategoriaCat.SelectedIndex = 0;
+            cboMarcaCat.SelectedIndex = 0;
+            txtPrecioMaximo.Text = "";
+            txtPrecioMinimo.Text = "";
+            txtBuscarCat.Text = "";
         }
     }
 }

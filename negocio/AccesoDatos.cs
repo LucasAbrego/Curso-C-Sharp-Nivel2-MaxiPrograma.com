@@ -61,7 +61,10 @@ namespace negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
-
+        public void setearParametro(string nombre, decimal valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
         public void cerrarConexion()
         {
             if (lector != null)
