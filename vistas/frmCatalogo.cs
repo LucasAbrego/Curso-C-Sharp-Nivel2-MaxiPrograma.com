@@ -27,7 +27,6 @@ namespace vistas
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-            resetearFormulario();
         }
         private void cargar()
         {
@@ -39,6 +38,7 @@ namespace vistas
                 dgvCatalogo.DataSource = listaArticulos;
                 ocultarColumnas();
                 cargarImagen(listaArticulos[0].ImagenUrl);
+                resetearFormulario();
             }
             catch (Exception ex)
             {
@@ -58,7 +58,6 @@ namespace vistas
                 cboCategoriaCat.DataSource = categoriaNegocio.listarCategoriasCbo(); ;
                 cboCategoriaCat.ValueMember = "Id";
                 cboCategoriaCat.DisplayMember = "Descripcion";
-
             }
             catch (Exception ex)
             {
@@ -68,6 +67,7 @@ namespace vistas
         private void ocultarColumnas()
         {
             dgvCatalogo.Columns["ImagenUrl"].Visible = false;
+            dgvCatalogo.Columns["Descripcion"].Visible = false;
             dgvCatalogo.Columns["Id"].Visible = false;
         }
         private void cargarImagen(string imagen)
@@ -115,7 +115,7 @@ namespace vistas
                 cargar();
             }
             else
-                MessageBox.Show("Seleccione el articulo que desea modificar.");
+                MessageBox.Show("Seleccione el artículo que desea modificar.");
         }
 
         private void btnCatEliminar_Click(object sender, EventArgs e)
@@ -145,6 +145,18 @@ namespace vistas
             }
         }
 
+        private void btnDetalles_Click(object sender, EventArgs e)
+        {
+            Articulo artSeleccionado;
+            if (dgvCatalogo.CurrentRow != null)
+            {
+                artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+                frmDetalles detalles = new frmDetalles(artSeleccionado);
+                detalles.ShowDialog();
+            }
+            else
+                MessageBox.Show("Seleccione un artículo para ver sus detalles.");
+        }
         private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
         {
             busquedaRapida();
@@ -217,6 +229,8 @@ namespace vistas
         {
             txtBuscarCat.Text = "";
         }
+
+       
 
         private void resetearFormulario()
         {
