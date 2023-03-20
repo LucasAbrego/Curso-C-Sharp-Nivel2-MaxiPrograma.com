@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace vistas
         private List<Articulo> listaArticulos;
         private Categoria categoriaSeleccionada;
         private Marca marcaSeleccionada;
+        Articulo artSeleccionado;
         private string precioMinimo = "", precioMaximo="";
  
         public frmCatalogo()
@@ -169,7 +171,7 @@ namespace vistas
 
         private void btnDetalles_Click(object sender, EventArgs e)
         {
-            Articulo artSeleccionado;
+
             if (dgvCatalogo.CurrentRow != null)
             {
                 artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
@@ -204,6 +206,8 @@ namespace vistas
             ocultarColumnas();
             if (listaArtBusqueda.Count == 0)
                 cargarImagen("sinElementos");
+            else
+                dgvCatalogo.CurrentCell = dgvCatalogo.Rows[0].Cells[1];
         }
         private void busquedaAvanzada()
         {
@@ -251,6 +255,7 @@ namespace vistas
         private void btnFiltrarCat_Click(object sender, EventArgs e)
         {
             busquedaAvanzada();
+            gbxBusquedaAvanzada.Visible = false;
         }
 
         private void btnLimpiarTxtBusqueda_Click(object sender, EventArgs e)
@@ -270,9 +275,16 @@ namespace vistas
 
         private void btnBusquedaAvanzada_Click(object sender, EventArgs e)
         {
-            gbxBusquedaAvanzada.Visible = true;
+            if (gbxBusquedaAvanzada.Visible)
+                gbxBusquedaAvanzada.Visible = false;
+            else
+                gbxBusquedaAvanzada.Visible = true;
         }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void resetearFormulario()
         {

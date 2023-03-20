@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pbxCatalogo = new System.Windows.Forms.PictureBox();
             this.dgvCatalogo = new System.Windows.Forms.DataGridView();
             this.btnAgregarCat = new System.Windows.Forms.Button();
@@ -62,7 +63,7 @@
             this.pbxCatalogo.BackColor = System.Drawing.Color.White;
             this.pbxCatalogo.Location = new System.Drawing.Point(608, 0);
             this.pbxCatalogo.Name = "pbxCatalogo";
-            this.pbxCatalogo.Size = new System.Drawing.Size(390, 403);
+            this.pbxCatalogo.Size = new System.Drawing.Size(389, 403);
             this.pbxCatalogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxCatalogo.TabIndex = 0;
             this.pbxCatalogo.TabStop = false;
@@ -72,8 +73,16 @@
             this.dgvCatalogo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCatalogo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvCatalogo.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvCatalogo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCatalogo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvCatalogo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogo.Location = new System.Drawing.Point(120, 0);
             this.dgvCatalogo.MultiSelect = false;
@@ -199,14 +208,14 @@
             this.gbxBusquedaAvanzada.Controls.Add(this.lbCategoríaCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.cboCategoriaCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.lbMaximo);
+            this.gbxBusquedaAvanzada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbxBusquedaAvanzada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxBusquedaAvanzada.ForeColor = System.Drawing.Color.White;
-            this.gbxBusquedaAvanzada.Location = new System.Drawing.Point(0, 211);
+            this.gbxBusquedaAvanzada.Location = new System.Drawing.Point(120, 204);
             this.gbxBusquedaAvanzada.Name = "gbxBusquedaAvanzada";
             this.gbxBusquedaAvanzada.Size = new System.Drawing.Size(256, 233);
             this.gbxBusquedaAvanzada.TabIndex = 9;
             this.gbxBusquedaAvanzada.TabStop = false;
-            this.gbxBusquedaAvanzada.Text = "Busqueda Avanzada";
             // 
             // btnCerrarBusquedaAv
             // 
@@ -278,9 +287,9 @@
             this.btnTodoCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTodoCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodoCat.ForeColor = System.Drawing.Color.White;
-            this.btnTodoCat.Location = new System.Drawing.Point(0, 292);
+            this.btnTodoCat.Location = new System.Drawing.Point(1, 280);
             this.btnTodoCat.Name = "btnTodoCat";
-            this.btnTodoCat.Size = new System.Drawing.Size(119, 40);
+            this.btnTodoCat.Size = new System.Drawing.Size(118, 37);
             this.btnTodoCat.TabIndex = 10;
             this.btnTodoCat.Text = "Traer Todo";
             this.btnTodoCat.UseVisualStyleBackColor = true;
@@ -290,7 +299,7 @@
             // 
             this.btnLimpiarTxtBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiarTxtBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btnLimpiarTxtBusqueda.Location = new System.Drawing.Point(579, 408);
+            this.btnLimpiarTxtBusqueda.Location = new System.Drawing.Point(579, 407);
             this.btnLimpiarTxtBusqueda.Name = "btnLimpiarTxtBusqueda";
             this.btnLimpiarTxtBusqueda.Size = new System.Drawing.Size(26, 26);
             this.btnLimpiarTxtBusqueda.TabIndex = 10;
@@ -342,6 +351,7 @@
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnBusquedaAvanzada
             // 
@@ -362,15 +372,19 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1002, 443);
+            this.ClientSize = new System.Drawing.Size(1002, 440);
             this.Controls.Add(this.gbxBusquedaAvanzada);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnLimpiarTxtBusqueda);
             this.Controls.Add(this.txtBuscarCat);
-            this.Controls.Add(this.dgvCatalogo);
             this.Controls.Add(this.pbxCatalogo);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dgvCatalogo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "frmCatalogo";
+            this.RightToLeftLayout = true;
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo de productos";
             this.Load += new System.EventHandler(this.frmCatalogo_Load);

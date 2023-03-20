@@ -55,5 +55,10 @@ namespace vistas
                 pbxDetalles.Load("https://us.123rf.com/450wm/pe3check/pe3check1710/pe3check171000054/88673746-nenhuma-imagem-dispon%C3%ADvel-sinal-%C3%ADcone-da-web-da-internet-para-indicar-a-aus%C3%AAncia-de-imagem-at%C3%A9-que.jpg?ver=6");
             }
         }
+
+        private void btnCerrarFrmDetalles_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

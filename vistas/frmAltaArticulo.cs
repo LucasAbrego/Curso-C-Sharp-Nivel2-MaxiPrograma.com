@@ -20,12 +20,13 @@ namespace vistas
         public frmAltaArticulo()
         {
             InitializeComponent();
+            lbAlta.Text = "Agregar Artículo";
         }
         public frmAltaArticulo(Articulo articulo)
         {
             InitializeComponent();
             this.articulo = articulo;
-            Text = "Modificar artículo";
+            lbAlta.Text = "Modificiar Artículo";
         }
 
 
