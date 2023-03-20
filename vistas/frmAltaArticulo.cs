@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace vistas
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
-        
+
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace vistas
             Text = "Modificar artículo";
         }
 
-        
+
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
@@ -41,8 +42,8 @@ namespace vistas
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
-                if (articulo != null) 
-                { 
+                if (articulo != null)
+                {
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
@@ -79,27 +80,58 @@ namespace vistas
             ArticuloNegocio artNegocio = new ArticuloNegocio();
             try
             {
+                bool validacion = true;
                 if (articulo == null)
                     articulo = new Articulo();
-                articulo.Codigo = txtCodigo.Text;
+                if (txtCodigo.Text.Length > 0) 
+                { 
+                    articulo.Codigo = txtCodigo.Text;
+                    txtCodigo.BorderStyle= BorderStyle.FixedSingle;
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar un código de producto");
+                    validacion = false;
+                }
+                if (txtNombre.Text.Length > 0)
+                {
+                    articulo.Nombre = txtNombre.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar el nombre del producto");
+                    validacion = false;
+                }
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
-                articulo.ImagenUrl= txtImagenUrl.Text;
-                articulo.Precio= decimal.Parse(txtPrecio.Text);
-
-                if (articulo.Id != 0)
+                articulo.ImagenUrl = txtImagenUrl.Text;
+                if (validarPrecios(txtPrecio.Text))
                 {
-                    artNegocio.modificar(articulo);
-                    MessageBox.Show("Modificado exitosamente");
+                    CultureInfo cultura = new CultureInfo("en-US");
+                    articulo.Precio = decimal.Parse(txtPrecio.Text);
                 }
                 else
                 {
-                    artNegocio.agregar(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    MessageBox.Show("Ingrese un precio correcto");
+                    validacion = false;
                 }
-                Close();
+                    
+                if (validacion)
+                {
+                    if (articulo.Id != 0)
+                    {
+                        artNegocio.modificar(articulo);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        artNegocio.agregar(articulo);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+                    Close();
+                }
             }
             catch (Exception ex)
             {
@@ -107,7 +139,21 @@ namespace vistas
             }
         }
 
-        private void btnCancelarAlta_Click(object sender, EventArgs e)
+        private bool validarPrecios(string precio)
+        {
+            bool precioOk = true;
+            foreach (char caracter in precio)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    precioOk = false;
+            }
+            if (precioOk)
+                return true;
+            else
+                return false;
+        }
+        
+    private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             Close();
         }

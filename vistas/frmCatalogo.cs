@@ -37,6 +37,7 @@ namespace vistas
                 listaArticulos = negocio.listar();
                 dgvCatalogo.DataSource = listaArticulos;
                 ocultarColumnas();
+                gbxBusquedaAvanzada.Visible = false;
                 cargarImagen(listaArticulos[0].ImagenUrl);
                 resetearFormulario();
             }
@@ -257,7 +258,21 @@ namespace vistas
             txtBuscarCat.Text = "";
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarBusquedaAv_Click(object sender, EventArgs e)
+        {
+            gbxBusquedaAvanzada.Visible = false;
+        }
+
+        private void btnBusquedaAvanzada_Click(object sender, EventArgs e)
+        {
+            gbxBusquedaAvanzada.Visible = true;
+        }
+
 
         private void resetearFormulario()
         {
