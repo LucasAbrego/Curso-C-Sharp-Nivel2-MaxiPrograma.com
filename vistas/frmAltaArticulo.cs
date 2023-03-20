@@ -29,7 +29,6 @@ namespace vistas
             lbAlta.Text = "Modificiar Artículo";
         }
 
-
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
@@ -54,7 +53,7 @@ namespace vistas
                         cboCategoria.SelectedValue = articulo.Categoria.Id;
                     txtImagenUrl.Text = articulo.ImagenUrl;
                     cargarImagen(articulo.ImagenUrl);
-                    txtPrecio.Text = articulo.Precio.ToString();
+                    txtPrecio.Text = articulo.Precio.ToString().Replace(',','.');
                 }
             }
             catch (Exception ex)
@@ -108,17 +107,25 @@ namespace vistas
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.ImagenUrl = txtImagenUrl.Text;
-                if (validarPrecios(txtPrecio.Text))
+                if (txtPrecio.Text.Length > 0)
                 {
-                    CultureInfo cultura = new CultureInfo("en-US");
-                    articulo.Precio = decimal.Parse(txtPrecio.Text);
+                    if (validarPrecios(txtPrecio.Text))
+                    {
+                        CultureInfo cultura = new CultureInfo("en-US");
+                        articulo.Precio = decimal.Parse(txtPrecio.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese un precio correcto");
+                        validacion = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Ingrese un precio correcto");
                     validacion = false;
                 }
-                    
+
                 if (validacion)
                 {
                     if (articulo.Id != 0)
@@ -131,6 +138,7 @@ namespace vistas
                         artNegocio.agregar(articulo);
                         MessageBox.Show("Agregado exitosamente");
                     }
+                    
                     Close();
                 }
             }

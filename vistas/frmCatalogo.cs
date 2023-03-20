@@ -20,7 +20,7 @@ namespace vistas
         private Marca marcaSeleccionada;
         Articulo artSeleccionado;
         private string precioMinimo = "", precioMaximo="";
- 
+        public bool aceptarPresionado;
         public frmCatalogo()
         {
             InitializeComponent();
@@ -38,10 +38,10 @@ namespace vistas
                 cargarDesplegables();
                 listaArticulos = negocio.listar();
                 dgvCatalogo.DataSource = listaArticulos;
-                ocultarColumnas();
+                formatoDGV();
                 gbxBusquedaAvanzada.Visible = false;
                 cargarImagen(listaArticulos[0].ImagenUrl);
-                resetearFormulario();
+                //resetearFormulario();
             }
             catch (Exception ex)
             {
@@ -67,11 +67,13 @@ namespace vistas
                 throw ex;
             }
         }
-        private void ocultarColumnas()
+        private void formatoDGV()
         {
             dgvCatalogo.Columns["ImagenUrl"].Visible = false;
             dgvCatalogo.Columns["Descripcion"].Visible = false;
             dgvCatalogo.Columns["Id"].Visible = false;
+            dgvCatalogo.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            dgvCatalogo.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
         private void cargarImagen(string imagen)
         {
@@ -126,17 +128,18 @@ namespace vistas
             frmAltaArticulo altaAgregar = new frmAltaArticulo();
             altaAgregar.ShowDialog();
             cargar();
+            
         }
 
         private void btnCatModificar_Click(object sender, EventArgs e)
         {
             Articulo artSeleccionado;
             if (dgvCatalogo.CurrentRow != null)
-            {
+            {   
                 artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
-                frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado); ;
+                frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado) ;
                 altaModificar.ShowDialog();
-                cargar();
+                busquedaAvanzada();
             }
             else
                 MessageBox.Show("Seleccione el artículo que desea modificar.");
@@ -181,12 +184,11 @@ namespace vistas
             else
                 MessageBox.Show("Seleccione un artículo para ver sus detalles.");
         }
+
         private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
         {
             busquedaRapida();
         }
-
-
         private void busquedaRapida()
         {
             List<Articulo> listaArtBusqueda;
@@ -203,7 +205,7 @@ namespace vistas
 
             dgvCatalogo.DataSource = null;
             dgvCatalogo.DataSource = listaArtBusqueda;
-            ocultarColumnas();
+            formatoDGV();
             if (listaArtBusqueda.Count == 0)
                 cargarImagen("sinElementos");
             else
@@ -249,7 +251,7 @@ namespace vistas
         private void btnTodoCat_Click(object sender, EventArgs e)
         {
             cargar();
-            resetearFormulario();
+            resetearFormulario("ambas");
         }
 
         private void btnFiltrarCat_Click(object sender, EventArgs e)
@@ -260,12 +262,7 @@ namespace vistas
 
         private void btnLimpiarTxtBusqueda_Click(object sender, EventArgs e)
         {
-            txtBuscarCat.Text = "";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            resetearFormulario("rapida");
         }
 
         private void btnCerrarBusquedaAv_Click(object sender, EventArgs e)
@@ -286,13 +283,38 @@ namespace vistas
             Close();
         }
 
-        private void resetearFormulario()
+        private void btnLimpiarBusquedaAv_Click(object sender, EventArgs e)
         {
-            cboCategoriaCat.SelectedIndex = 0;
-            cboMarcaCat.SelectedIndex = 0;
-            txtPrecioMaximo.Text = "";
-            txtPrecioMinimo.Text = "";
-            txtBuscarCat.Text = "";
+            resetearFormulario("avanzada");
+        }
+
+        private void btnBuscarCat_Click(object sender, EventArgs e)
+        {
+            busquedaAvanzada();
+            gbxBusquedaAvanzada.Visible =false;
+        }
+
+        private void resetearFormulario(string bAvanzadaRapidaAmbas)
+        {
+            if (bAvanzadaRapidaAmbas == "rapida")
+                txtBuscarCat.Text = "";
+            else if (bAvanzadaRapidaAmbas == "avanzada")
+            {
+                cboCategoriaCat.SelectedIndex = 0;
+                cboMarcaCat.SelectedIndex = 0;
+                txtPrecioMaximo.Text = "";
+                txtPrecioMinimo.Text = "";
+            }
+            else if (bAvanzadaRapidaAmbas == "ambas")
+            {
+                txtBuscarCat.Text = "";
+                cboCategoriaCat.SelectedIndex = 0;
+                cboMarcaCat.SelectedIndex = 0;
+                txtPrecioMaximo.Text = "";
+                txtPrecioMinimo.Text = "";
+            }
+            
+
         }
     }
 }

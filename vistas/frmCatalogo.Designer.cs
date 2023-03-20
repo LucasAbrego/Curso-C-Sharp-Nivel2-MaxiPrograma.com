@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pbxCatalogo = new System.Windows.Forms.PictureBox();
             this.dgvCatalogo = new System.Windows.Forms.DataGridView();
             this.btnAgregarCat = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.cboCategoriaCat = new System.Windows.Forms.ComboBox();
             this.gbxBusquedaAvanzada = new System.Windows.Forms.GroupBox();
             this.btnCerrarBusquedaAv = new System.Windows.Forms.Button();
+            this.btnLimpiarBusquedaAv = new System.Windows.Forms.Button();
             this.btnBuscarCat = new System.Windows.Forms.Button();
             this.txtPrecioMaximo = new System.Windows.Forms.TextBox();
             this.txtPrecioMinimo = new System.Windows.Forms.TextBox();
@@ -75,14 +76,14 @@
             this.dgvCatalogo.BackgroundColor = System.Drawing.Color.White;
             this.dgvCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCatalogo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCatalogo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogo.Location = new System.Drawing.Point(120, 0);
             this.dgvCatalogo.MultiSelect = false;
@@ -197,8 +198,10 @@
             // 
             // gbxBusquedaAvanzada
             // 
+            this.gbxBusquedaAvanzada.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.gbxBusquedaAvanzada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.gbxBusquedaAvanzada.Controls.Add(this.btnCerrarBusquedaAv);
+            this.gbxBusquedaAvanzada.Controls.Add(this.btnLimpiarBusquedaAv);
             this.gbxBusquedaAvanzada.Controls.Add(this.btnBuscarCat);
             this.gbxBusquedaAvanzada.Controls.Add(this.txtPrecioMaximo);
             this.gbxBusquedaAvanzada.Controls.Add(this.lbMarcaCat);
@@ -230,19 +233,33 @@
             this.btnCerrarBusquedaAv.UseVisualStyleBackColor = true;
             this.btnCerrarBusquedaAv.Click += new System.EventHandler(this.btnCerrarBusquedaAv_Click);
             // 
+            // btnLimpiarBusquedaAv
+            // 
+            this.btnLimpiarBusquedaAv.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarBusquedaAv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarBusquedaAv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarBusquedaAv.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarBusquedaAv.Location = new System.Drawing.Point(0, 0);
+            this.btnLimpiarBusquedaAv.Name = "btnLimpiarBusquedaAv";
+            this.btnLimpiarBusquedaAv.Size = new System.Drawing.Size(235, 25);
+            this.btnLimpiarBusquedaAv.TabIndex = 14;
+            this.btnLimpiarBusquedaAv.Text = "Limpiar";
+            this.btnLimpiarBusquedaAv.UseVisualStyleBackColor = true;
+            this.btnLimpiarBusquedaAv.Click += new System.EventHandler(this.btnLimpiarBusquedaAv_Click);
+            // 
             // btnBuscarCat
             // 
             this.btnBuscarCat.FlatAppearance.BorderSize = 0;
             this.btnBuscarCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarCat.ForeColor = System.Drawing.Color.White;
-            this.btnBuscarCat.Location = new System.Drawing.Point(1, 190);
+            this.btnBuscarCat.Location = new System.Drawing.Point(6, 189);
             this.btnBuscarCat.Name = "btnBuscarCat";
-            this.btnBuscarCat.Size = new System.Drawing.Size(253, 40);
-            this.btnBuscarCat.TabIndex = 11;
+            this.btnBuscarCat.Size = new System.Drawing.Size(243, 40);
+            this.btnBuscarCat.TabIndex = 13;
             this.btnBuscarCat.Text = "Buscar";
             this.btnBuscarCat.UseVisualStyleBackColor = true;
-            this.btnBuscarCat.Click += new System.EventHandler(this.btnFiltrarCat_Click);
+            this.btnBuscarCat.Click += new System.EventHandler(this.btnBuscarCat_Click);
             // 
             // txtPrecioMaximo
             // 
@@ -421,8 +438,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBusquedaAvanzada;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button btnBuscarCat;
         private System.Windows.Forms.Button btnCerrarBusquedaAv;
+        private System.Windows.Forms.Button btnLimpiarBusquedaAv;
+        private System.Windows.Forms.Button btnBuscarCat;
     }
 }
 

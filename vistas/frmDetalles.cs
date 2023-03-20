@@ -37,7 +37,7 @@ namespace vistas
                     lbCategoriaDetalles.Text = "Categoría: " + articulo.Categoria.Descripcion;
                 if (articulo.ImagenUrl != null)
                     cargarImagen(articulo.ImagenUrl);
-                lbPrecioDetalles.Text = articulo.Precio.ToString() + " ARS";
+                lbPrecioDetalles.Text = articulo.Precio.ToString("0.00") + " ARS";
             }
             catch (Exception ex)
             {
