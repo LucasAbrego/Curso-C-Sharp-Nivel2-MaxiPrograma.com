@@ -97,6 +97,27 @@ namespace vistas
             }
         }
 
+        private string validarPrecios(string minimo, string maximo)
+        {
+            bool minOk = true, maxOk = true;
+
+            foreach (char caracter in minimo)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    minOk = false;
+            }
+
+            foreach (char caracter in maximo)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    maxOk = false;
+            }
+
+            if (minOk == true && maxOk == true)
+                return "TodoOk";
+            else
+                return "Ingrese un precio válido";
+        }
         private void btnCatAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo altaAgregar = new frmAltaArticulo();
@@ -198,14 +219,20 @@ namespace vistas
                     precioMaximo = txtPrecioMaximo.Text;
                 else
                     precioMaximo = "";
+                string estadoPrecio = validarPrecios(precioMinimo, precioMaximo);
 
                 if (categoriaSeleccionada != null && marcaSeleccionada != null)
                 {
-                    listaArticulos = negocioBusquedaAv.filtrar(marcaSeleccionada, categoriaSeleccionada, precioMinimo, precioMaximo);
-                    dgvCatalogo.DataSource = listaArticulos;
-                    if (listaArticulos.Count == 0)
-                        cargarImagen("sinElementos");
-                    busquedaRapida();
+                    if (estadoPrecio == "TodoOk")
+                    {
+                        listaArticulos = negocioBusquedaAv.filtrar(marcaSeleccionada, categoriaSeleccionada, precioMinimo, precioMaximo);
+                        dgvCatalogo.DataSource = listaArticulos;
+                        if (listaArticulos.Count == 0)
+                            cargarImagen("sinElementos");
+                        busquedaRapida();
+                    }
+                    else
+                        MessageBox.Show(estadoPrecio);
                 }
             }
             catch (Exception ex)

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -160,16 +161,18 @@ namespace negocio
                 datos.setearConsulta(consulta + consultaMarcaCategoria + consultaPrecio);
                 datos.setearParametro("@idMarca", marc.Id);
                 datos.setearParametro("@idCategoria", cat.Id);
+                CultureInfo cultura = new CultureInfo("en-US");
                 if (minimo.Length > 0)
                 {
-                    decimal minimoD = decimal.Parse(minimo);
+                    decimal minimoD = decimal.Parse(minimo, cultura);
                     datos.setearParametro("@minimo", minimoD);
                 }
                 if (maximo.Length > 0)
                 {
-                    decimal maximoD = decimal.Parse(maximo);
+                    decimal maximoD = decimal.Parse(maximo, cultura);
                     datos.setearParametro("@maximo", maximoD);
                 }
+
 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
@@ -233,11 +236,11 @@ namespace negocio
             if (maximo.Length == 0 && minimo.Length == 0)
                 return ";";
             else if (maximo.Length == 0 && minimo.Length > 0)
-                return " and A.Precio > @minimo;";
+                return " and A.Precio >= @minimo;";
             else if (maximo.Length > 0 && minimo.Length == 0)
-                return " and A.Precio < @maximo";
+                return " and A.Precio <= @maximo";
             else  
-                return " and A.Precio > @minimo and A.Precio < @maximo";
+                return " and A.Precio >= @minimo and A.Precio <= @maximo";
         }
     }
 }
