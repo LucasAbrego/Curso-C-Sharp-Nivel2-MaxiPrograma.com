@@ -20,7 +20,7 @@ namespace vistas
         private Marca marcaSeleccionada;
         Articulo artSeleccionado;
         private string precioMinimo = "", precioMaximo="";
-        public bool aceptarPresionado;
+        
         public frmCatalogo()
         {
             InitializeComponent();
@@ -41,7 +41,6 @@ namespace vistas
                 formatoDGV();
                 gbxBusquedaAvanzada.Visible = false;
                 cargarImagen(listaArticulos[0].ImagenUrl);
-                //resetearFormulario();
             }
             catch (Exception ex)
             {
@@ -126,9 +125,9 @@ namespace vistas
         private void btnCatAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo altaAgregar = new frmAltaArticulo();
-            altaAgregar.ShowDialog();
-            cargar();
-            
+            DialogResult altaRespuesta= altaAgregar.ShowDialog();
+            if (altaRespuesta == DialogResult.OK)
+                cargar();             
         }
 
         private void btnCatModificar_Click(object sender, EventArgs e)
@@ -138,8 +137,9 @@ namespace vistas
             {   
                 artSeleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
                 frmAltaArticulo altaModificar = new frmAltaArticulo(artSeleccionado) ;
-                altaModificar.ShowDialog();
-                busquedaAvanzada();
+                DialogResult altaRespuesta = altaModificar.ShowDialog();
+                if (altaRespuesta == DialogResult.OK)
+                    busquedaAvanzada();
             }
             else
                 MessageBox.Show("Seleccione el artículo que desea modificar.");
@@ -248,11 +248,7 @@ namespace vistas
             }
         }
 
-        private void btnTodoCat_Click(object sender, EventArgs e)
-        {
-            cargar();
-            resetearFormulario("ambas");
-        }
+        
 
         private void btnFiltrarCat_Click(object sender, EventArgs e)
         {
@@ -278,11 +274,6 @@ namespace vistas
                 gbxBusquedaAvanzada.Visible = true;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void btnLimpiarBusquedaAv_Click(object sender, EventArgs e)
         {
             resetearFormulario("avanzada");
@@ -293,7 +284,15 @@ namespace vistas
             busquedaAvanzada();
             gbxBusquedaAvanzada.Visible =false;
         }
-
+        private void btnTodoCat_Click(object sender, EventArgs e)
+        {
+            cargar();
+            resetearFormulario("ambas");
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         private void resetearFormulario(string bAvanzadaRapidaAmbas)
         {
             if (bAvanzadaRapidaAmbas == "rapida")
@@ -313,8 +312,6 @@ namespace vistas
                 txtPrecioMaximo.Text = "";
                 txtPrecioMinimo.Text = "";
             }
-            
-
         }
     }
 }

@@ -35,10 +35,11 @@
             this.lbCodigoDetalles = new System.Windows.Forms.Label();
             this.lbPrecioDetalles = new System.Windows.Forms.Label();
             this.pbxDetalles = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSuperior = new System.Windows.Forms.Panel();
             this.btnCerrarFrmDetalles = new System.Windows.Forms.Button();
+            this.panelBordeInferior = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDetalles)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelSuperior.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbCategoriaDetalles
@@ -110,15 +111,15 @@
             this.pbxDetalles.TabIndex = 26;
             this.pbxDetalles.TabStop = false;
             // 
-            // panel1
+            // panelSuperior
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.panel1.Controls.Add(this.btnCerrarFrmDetalles);
-            this.panel1.Controls.Add(this.lbNombreDetalles);
-            this.panel1.Location = new System.Drawing.Point(0, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(876, 47);
-            this.panel1.TabIndex = 27;
+            this.panelSuperior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panelSuperior.Controls.Add(this.btnCerrarFrmDetalles);
+            this.panelSuperior.Controls.Add(this.lbNombreDetalles);
+            this.panelSuperior.Location = new System.Drawing.Point(0, -1);
+            this.panelSuperior.Name = "panelSuperior";
+            this.panelSuperior.Size = new System.Drawing.Size(876, 47);
+            this.panelSuperior.TabIndex = 27;
             // 
             // btnCerrarFrmDetalles
             // 
@@ -136,26 +137,36 @@
             this.btnCerrarFrmDetalles.UseVisualStyleBackColor = true;
             this.btnCerrarFrmDetalles.Click += new System.EventHandler(this.btnCerrarFrmDetalles_Click);
             // 
+            // panelBordeInferior
+            // 
+            this.panelBordeInferior.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelBordeInferior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(178)))), ((int)(((byte)(255)))));
+            this.panelBordeInferior.Location = new System.Drawing.Point(0, 514);
+            this.panelBordeInferior.Name = "panelBordeInferior";
+            this.panelBordeInferior.Size = new System.Drawing.Size(876, 1);
+            this.panelBordeInferior.TabIndex = 28;
+            // 
             // frmDetalles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(876, 516);
+            this.Controls.Add(this.panelBordeInferior);
             this.Controls.Add(this.pbxDetalles);
             this.Controls.Add(this.lbPrecioDetalles);
             this.Controls.Add(this.lbCategoriaDetalles);
             this.Controls.Add(this.lbMarcaDetalles);
             this.Controls.Add(this.lbDescripcionDetalles);
             this.Controls.Add(this.lbCodigoDetalles);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelSuperior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDetalles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detalles";
             this.Load += new System.EventHandler(this.frmDetalles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxDetalles)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelSuperior.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -169,7 +180,8 @@
         private System.Windows.Forms.Label lbCodigoDetalles;
         private System.Windows.Forms.Label lbPrecioDetalles;
         private System.Windows.Forms.PictureBox pbxDetalles;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSuperior;
         private System.Windows.Forms.Button btnCerrarFrmDetalles;
+        private System.Windows.Forms.Panel panelBordeInferior;
     }
 }

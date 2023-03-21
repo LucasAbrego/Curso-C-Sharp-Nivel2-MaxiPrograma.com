@@ -16,7 +16,6 @@ namespace vistas
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
-
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -35,6 +34,7 @@ namespace vistas
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             try
             {
+                ocultarAvisosDeRequeridos();
                 cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
@@ -86,20 +86,21 @@ namespace vistas
                 if (txtCodigo.Text.Length > 0) 
                 { 
                     articulo.Codigo = txtCodigo.Text;
-                    txtCodigo.BorderStyle= BorderStyle.FixedSingle;
+                    bordeRojo(txtCodigo, panelBordeCodigo, lbRequeridoCodigo, false);
                 }
                 else
                 {
-                    MessageBox.Show("Debe ingresar un código de producto");
+                    bordeRojo(txtCodigo, panelBordeCodigo, lbRequeridoCodigo, true);
                     validacion = false;
                 }
                 if (txtNombre.Text.Length > 0)
                 {
                     articulo.Nombre = txtNombre.Text;
+                    bordeRojo(txtNombre, panelBordeNombre, lbRequeridoNombre, false);
                 }
                 else
                 {
-                    MessageBox.Show("Debe ingresar el nombre del producto");
+                    bordeRojo(txtNombre, panelBordeNombre, lbRequeridoNombre, true);
                     validacion = false;
                 }
                 articulo.Nombre = txtNombre.Text;
@@ -113,16 +114,19 @@ namespace vistas
                     {
                         CultureInfo cultura = new CultureInfo("en-US");
                         articulo.Precio = decimal.Parse(txtPrecio.Text);
+                        bordeRojo(txtPrecio, panelBordePrecio, lbRequeridoPrecio, false);
                     }
                     else
                     {
-                        MessageBox.Show("Ingrese un precio correcto");
+                        lbRequeridoPrecio.Text = "Ingrese un número";
+                        bordeRojo(txtPrecio, panelBordePrecio, lbRequeridoPrecio, true);
                         validacion = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ingrese un precio correcto");
+                    lbRequeridoPrecio.Text = "Campo requerido";
+                    bordeRojo(txtPrecio, panelBordePrecio, lbRequeridoPrecio, true);
                     validacion = false;
                 }
 
@@ -138,7 +142,7 @@ namespace vistas
                         artNegocio.agregar(articulo);
                         MessageBox.Show("Agregado exitosamente");
                     }
-                    
+                    DialogResult = DialogResult.OK;
                     Close();
                 }
             }
@@ -162,14 +166,40 @@ namespace vistas
                 return false;
         }
         
-    private void btnCancelarAlta_Click(object sender, EventArgs e)
+        private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
         private void txtImagenUrl_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtImagenUrl.Text);
+        }
+        
+        private void ocultarAvisosDeRequeridos()
+        {
+            lbRequeridoCodigo.Visible = false;
+            lbRequeridoNombre.Visible = false;
+            lbRequeridoPrecio.Visible = false;
+            panelBordeCodigo.Visible = false;
+            panelBordeNombre.Visible = false;
+            panelBordePrecio.Visible = false;
+        }
+        private void bordeRojo(TextBox textBox, Panel panel, Label label, bool bordeRojo)
+        {
+            if (bordeRojo)
+            {
+                label.Visible = true;
+                panel.Visible = true;
+                textBox.BorderStyle = BorderStyle.None;
+            }
+            else
+            {
+                label.Visible = false;
+                panel.Visible = false;
+                textBox.BorderStyle = BorderStyle.Fixed3D;
+            }
         }
     }
 }
