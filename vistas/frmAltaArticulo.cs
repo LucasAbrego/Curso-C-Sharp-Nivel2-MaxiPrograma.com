@@ -6,16 +6,18 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Configuration;
 namespace vistas
 {
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+        private OpenFileDialog archivo= null;
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -62,18 +64,7 @@ namespace vistas
                 MessageBox.Show(ex.ToString());
             }
         }
-
-        private void cargarImagen(string imagen)
-        {
-            try
-            {
-                pbxAlta.Load(imagen);
-            }
-            catch (Exception)
-            {
-                pbxAlta.Load("https://us.123rf.com/450wm/pe3check/pe3check1710/pe3check171000054/88673746-nenhuma-imagem-dispon%C3%ADvel-sinal-%C3%ADcone-da-web-da-internet-para-indicar-a-aus%C3%AAncia-de-imagem-at%C3%A9-que.jpg?ver=6");
-            }
-        }
+        
 
         private void btnAceptarAlta_Click(object sender, EventArgs e)
         {
@@ -113,7 +104,7 @@ namespace vistas
                     if (validarPrecios(txtPrecio.Text))
                     {
                         CultureInfo cultura = new CultureInfo("en-US");
-                        articulo.Precio = decimal.Parse(txtPrecio.Text);
+                        articulo.Precio = decimal.Parse(txtPrecio.Text, cultura);
                         bordeRojo(txtPrecio, panelBordePrecio, lbRequeridoPrecio, false);
                     }
                     else
@@ -143,6 +134,8 @@ namespace vistas
                         MessageBox.Show("Agregado exitosamente");
                     }
                     DialogResult = DialogResult.OK;
+                    if (archivo != null && !(txtImagenUrl.Text.ToLower().Contains("http")))
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Marca.Descripcion + articulo.Codigo + archivo.SafeFileName);
                     Close();
                 }
             }
@@ -150,33 +143,39 @@ namespace vistas
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private bool validarPrecios(string precio)
-        {
-            bool precioOk = true;
-            foreach (char caracter in precio)
-            {
-                if (!(char.IsNumber(caracter) || caracter == '.'))
-                    precioOk = false;
-            }
-            if (precioOk)
-                return true;
-            else
-                return false;
-        }
-        
+        } 
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jgp|*.jpg;|png|*.png;";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagenUrl.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+            }
+        }
 
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxAlta.Load(imagen);
+            }
+            catch (Exception)
+            {
+                pbxAlta.Load("https://us.123rf.com/450wm/pe3check/pe3check1710/pe3check171000054/88673746-nenhuma-imagem-dispon%C3%ADvel-sinal-%C3%ADcone-da-web-da-internet-para-indicar-a-aus%C3%AAncia-de-imagem-at%C3%A9-que.jpg?ver=6");
+            }
+        }
         private void txtImagenUrl_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtImagenUrl.Text);
         }
-        
         private void ocultarAvisosDeRequeridos()
         {
             lbRequeridoCodigo.Visible = false;
@@ -200,6 +199,19 @@ namespace vistas
                 panel.Visible = false;
                 textBox.BorderStyle = BorderStyle.Fixed3D;
             }
+        }
+        private bool validarPrecios(string precio)
+        {
+            bool precioOk = true;
+            foreach (char caracter in precio)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    precioOk = false;
+            }
+            if (precioOk)
+                return true;
+            else
+                return false;
         }
     }
 }

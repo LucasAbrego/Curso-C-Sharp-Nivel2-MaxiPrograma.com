@@ -45,7 +45,7 @@
             // lbCategoriaDetalles
             // 
             this.lbCategoriaDetalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCategoriaDetalles.Location = new System.Drawing.Point(12, 128);
+            this.lbCategoriaDetalles.Location = new System.Drawing.Point(12, 170);
             this.lbCategoriaDetalles.Name = "lbCategoriaDetalles";
             this.lbCategoriaDetalles.Size = new System.Drawing.Size(427, 40);
             this.lbCategoriaDetalles.TabIndex = 23;
@@ -54,7 +54,7 @@
             // lbMarcaDetalles
             // 
             this.lbMarcaDetalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMarcaDetalles.Location = new System.Drawing.Point(12, 88);
+            this.lbMarcaDetalles.Location = new System.Drawing.Point(12, 114);
             this.lbMarcaDetalles.Name = "lbMarcaDetalles";
             this.lbMarcaDetalles.Size = new System.Drawing.Size(427, 40);
             this.lbMarcaDetalles.TabIndex = 22;
@@ -63,9 +63,9 @@
             // lbDescripcionDetalles
             // 
             this.lbDescripcionDetalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDescripcionDetalles.Location = new System.Drawing.Point(12, 171);
+            this.lbDescripcionDetalles.Location = new System.Drawing.Point(12, 226);
             this.lbDescripcionDetalles.Name = "lbDescripcionDetalles";
-            this.lbDescripcionDetalles.Size = new System.Drawing.Size(427, 336);
+            this.lbDescripcionDetalles.Size = new System.Drawing.Size(427, 281);
             this.lbDescripcionDetalles.TabIndex = 19;
             this.lbDescripcionDetalles.Text = "Descripción";
             // 
@@ -83,7 +83,7 @@
             // lbCodigoDetalles
             // 
             this.lbCodigoDetalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCodigoDetalles.Location = new System.Drawing.Point(12, 48);
+            this.lbCodigoDetalles.Location = new System.Drawing.Point(12, 58);
             this.lbCodigoDetalles.Name = "lbCodigoDetalles";
             this.lbCodigoDetalles.Size = new System.Drawing.Size(427, 40);
             this.lbCodigoDetalles.TabIndex = 17;

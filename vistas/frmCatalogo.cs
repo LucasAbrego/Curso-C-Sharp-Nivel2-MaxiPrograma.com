@@ -25,7 +25,6 @@ namespace vistas
         {
             InitializeComponent();
         }
-
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
@@ -66,14 +65,6 @@ namespace vistas
                 throw ex;
             }
         }
-        private void formatoDGV()
-        {
-            dgvCatalogo.Columns["ImagenUrl"].Visible = false;
-            dgvCatalogo.Columns["Descripcion"].Visible = false;
-            dgvCatalogo.Columns["Id"].Visible = false;
-            dgvCatalogo.Columns["Precio"].DefaultCellStyle.Format = "N2";
-            dgvCatalogo.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        }
         private void cargarImagen(string imagen)
         {
             try
@@ -90,38 +81,9 @@ namespace vistas
             {
                 pbxCatalogo.Load("https://us.123rf.com/450wm/pe3check/pe3check1710/pe3check171000054/88673746-nenhuma-imagem-dispon%C3%ADvel-sinal-%C3%ADcone-da-web-da-internet-para-indicar-a-aus%C3%AAncia-de-imagem-at%C3%A9-que.jpg?ver=6");
             }
-        }
+        }    
 
-        private void dgvCatalogo_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvCatalogo.CurrentRow != null)
-            {
-                Articulo seleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.ImagenUrl);
-            }
-        }
 
-        private string validarPrecios(string minimo, string maximo)
-        {
-            bool minOk = true, maxOk = true;
-
-            foreach (char caracter in minimo)
-            {
-                if (!(char.IsNumber(caracter) || caracter == '.'))
-                    minOk = false;
-            }
-
-            foreach (char caracter in maximo)
-            {
-                if (!(char.IsNumber(caracter) || caracter == '.'))
-                    maxOk = false;
-            }
-
-            if (minOk == true && maxOk == true)
-                return "TodoOk";
-            else
-                return "Ingrese un precio válido";
-        }
         private void btnCatAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo altaAgregar = new frmAltaArticulo();
@@ -129,7 +91,6 @@ namespace vistas
             if (altaRespuesta == DialogResult.OK)
                 cargar();             
         }
-
         private void btnCatModificar_Click(object sender, EventArgs e)
         {
             Articulo artSeleccionado;
@@ -144,12 +105,10 @@ namespace vistas
             else
                 MessageBox.Show("Seleccione el artículo que desea modificar.");
         }
-
         private void btnCatEliminar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio artNegocio = new ArticuloNegocio();
             Articulo artSeleccionado;
-            
             try
             {
                 if (dgvCatalogo.CurrentRow != null)
@@ -171,7 +130,6 @@ namespace vistas
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void btnDetalles_Click(object sender, EventArgs e)
         {
 
@@ -185,10 +143,7 @@ namespace vistas
                 MessageBox.Show("Seleccione un artículo para ver sus detalles.");
         }
 
-        private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
-        {
-            busquedaRapida();
-        }
+
         private void busquedaRapida()
         {
             List<Articulo> listaArtBusqueda;
@@ -211,6 +166,16 @@ namespace vistas
             else
                 dgvCatalogo.CurrentCell = dgvCatalogo.Rows[0].Cells[1];
         }
+        private void btnLimpiarTxtBusqueda_Click(object sender, EventArgs e)
+        {
+            resetearFormulario("rapida");
+        }
+        private void txtBuscarCatalogo_TextChanged(object sender, EventArgs e)
+        {
+            busquedaRapida();
+        }
+
+
         private void busquedaAvanzada()
         {
             ArticuloNegocio negocioBusquedaAv = new ArticuloNegocio();
@@ -247,25 +212,15 @@ namespace vistas
                 MessageBox.Show(ex.ToString());
             }
         }
-
-        
-
         private void btnFiltrarCat_Click(object sender, EventArgs e)
         {
             busquedaAvanzada();
             gbxBusquedaAvanzada.Visible = false;
         }
-
-        private void btnLimpiarTxtBusqueda_Click(object sender, EventArgs e)
-        {
-            resetearFormulario("rapida");
-        }
-
         private void btnCerrarBusquedaAv_Click(object sender, EventArgs e)
         {
             gbxBusquedaAvanzada.Visible = false;
         }
-
         private void btnBusquedaAvanzada_Click(object sender, EventArgs e)
         {
             if (gbxBusquedaAvanzada.Visible)
@@ -273,25 +228,68 @@ namespace vistas
             else
                 gbxBusquedaAvanzada.Visible = true;
         }
-
         private void btnLimpiarBusquedaAv_Click(object sender, EventArgs e)
         {
             resetearFormulario("avanzada");
         }
-
         private void btnBuscarCat_Click(object sender, EventArgs e)
         {
             busquedaAvanzada();
             gbxBusquedaAvanzada.Visible =false;
         }
+
+
         private void btnTodoCat_Click(object sender, EventArgs e)
         {
             cargar();
             resetearFormulario("ambas");
         }
+
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+
+        private void formatoDGV()
+        {
+            dgvCatalogo.Columns["ImagenUrl"].Visible = false;
+            dgvCatalogo.Columns["Descripcion"].Visible = false;
+            dgvCatalogo.Columns["Id"].Visible = false;
+            dgvCatalogo.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            dgvCatalogo.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
+        private void dgvCatalogo_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCatalogo.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvCatalogo.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.ImagenUrl);
+            }
+        }
+
+
+        private string validarPrecios(string minimo, string maximo)
+        {
+            bool minOk = true, maxOk = true;
+
+            foreach (char caracter in minimo)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    minOk = false;
+            }
+
+            foreach (char caracter in maximo)
+            {
+                if (!(char.IsNumber(caracter) || caracter == '.'))
+                    maxOk = false;
+            }
+
+            if (minOk == true && maxOk == true)
+                return "TodoOk";
+            else
+                return "Ingrese un precio válido";
         }
         private void resetearFormulario(string bAvanzadaRapidaAmbas)
         {

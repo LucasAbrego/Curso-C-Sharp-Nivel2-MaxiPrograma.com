@@ -54,7 +54,7 @@
             this.panelBordeCodigo = new System.Windows.Forms.Panel();
             this.panelBordeNombre = new System.Windows.Forms.Panel();
             this.panelBordePrecio = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAlta)).BeginInit();
             this.panelSuperior.SuspendLayout();
             this.SuspendLayout();
@@ -126,6 +126,7 @@
             // 
             // btnCancelarAlta
             // 
+            this.btnCancelarAlta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelarAlta.FlatAppearance.BorderSize = 0;
             this.btnCancelarAlta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelarAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -182,7 +183,7 @@
             this.txtImagenUrl.Location = new System.Drawing.Point(159, 431);
             this.txtImagenUrl.MaxLength = 1000;
             this.txtImagenUrl.Name = "txtImagenUrl";
-            this.txtImagenUrl.Size = new System.Drawing.Size(469, 35);
+            this.txtImagenUrl.Size = new System.Drawing.Size(542, 35);
             this.txtImagenUrl.TabIndex = 5;
             this.txtImagenUrl.Leave += new System.EventHandler(this.txtImagenUrl_Leave);
             // 
@@ -326,15 +327,16 @@
             this.panelBordePrecio.Size = new System.Drawing.Size(264, 33);
             this.panelBordePrecio.TabIndex = 24;
             // 
-            // button1
+            // btnImportar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.Location = new System.Drawing.Point(634, 431);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 37);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Importar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnImportar.Location = new System.Drawing.Point(707, 431);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(42, 42);
+            this.btnImportar.TabIndex = 25;
+            this.btnImportar.Text = "+";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // frmAltaArticulo
             // 
@@ -343,7 +345,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelarAlta;
             this.ClientSize = new System.Drawing.Size(763, 643);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.lbRequeridoPrecio);
             this.Controls.Add(this.lbRequeridoNombre);
             this.Controls.Add(this.panelBordeInferior);
@@ -408,6 +410,6 @@
         private System.Windows.Forms.Panel panelBordeCodigo;
         private System.Windows.Forms.Panel panelBordeNombre;
         private System.Windows.Forms.Panel panelBordePrecio;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnImportar;
     }
 }

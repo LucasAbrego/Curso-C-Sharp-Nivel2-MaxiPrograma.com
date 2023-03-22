@@ -30,7 +30,7 @@ namespace vistas
                 if (articulo.Nombre != null)
                     lbNombreDetalles.Text = articulo.Nombre;
                 if (articulo.Descripcion != null)
-                    lbDescripcionDetalles.Text = "Descripcion \n" + articulo.Descripcion;
+                    lbDescripcionDetalles.Text = "Descripcion: " + articulo.Descripcion;
                 if (articulo.Marca != null)
                     lbMarcaDetalles.Text = "Marca: " + articulo.Marca.Descripcion;
                 if (articulo.Categoria != null)
