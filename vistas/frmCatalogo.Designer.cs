@@ -95,7 +95,7 @@
             this.dgvCatalogo.RowTemplate.Height = 28;
             this.dgvCatalogo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCatalogo.Size = new System.Drawing.Size(485, 403);
-            this.dgvCatalogo.TabIndex = 1;
+            this.dgvCatalogo.TabIndex = 0;
             this.dgvCatalogo.SelectionChanged += new System.EventHandler(this.dgvCatalogo_SelectionChanged);
             // 
             // btnAgregarCat
@@ -108,7 +108,7 @@
             this.btnAgregarCat.Location = new System.Drawing.Point(0, 12);
             this.btnAgregarCat.Name = "btnAgregarCat";
             this.btnAgregarCat.Size = new System.Drawing.Size(119, 40);
-            this.btnAgregarCat.TabIndex = 2;
+            this.btnAgregarCat.TabIndex = 0;
             this.btnAgregarCat.Text = "Agregar";
             this.btnAgregarCat.UseVisualStyleBackColor = false;
             this.btnAgregarCat.Click += new System.EventHandler(this.btnCatAgregar_Click);
@@ -123,7 +123,7 @@
             this.btnModificarCat.Location = new System.Drawing.Point(0, 58);
             this.btnModificarCat.Name = "btnModificarCat";
             this.btnModificarCat.Size = new System.Drawing.Size(119, 40);
-            this.btnModificarCat.TabIndex = 3;
+            this.btnModificarCat.TabIndex = 1;
             this.btnModificarCat.Text = "Modificar";
             this.btnModificarCat.UseVisualStyleBackColor = false;
             this.btnModificarCat.Click += new System.EventHandler(this.btnCatModificar_Click);
@@ -138,7 +138,7 @@
             this.btnEliminarCat.Location = new System.Drawing.Point(0, 104);
             this.btnEliminarCat.Name = "btnEliminarCat";
             this.btnEliminarCat.Size = new System.Drawing.Size(119, 40);
-            this.btnEliminarCat.TabIndex = 4;
+            this.btnEliminarCat.TabIndex = 2;
             this.btnEliminarCat.Text = "Eliminar";
             this.btnEliminarCat.UseVisualStyleBackColor = false;
             this.btnEliminarCat.Click += new System.EventHandler(this.btnCatEliminar_Click);
@@ -150,7 +150,7 @@
             this.txtBuscarCat.MaxLength = 50;
             this.txtBuscarCat.Name = "txtBuscarCat";
             this.txtBuscarCat.Size = new System.Drawing.Size(460, 32);
-            this.txtBuscarCat.TabIndex = 5;
+            this.txtBuscarCat.TabIndex = 1;
             this.txtBuscarCat.TextChanged += new System.EventHandler(this.txtBuscarCatalogo_TextChanged);
             // 
             // lbMarcaCat
@@ -194,7 +194,7 @@
             this.cboCategoriaCat.Location = new System.Drawing.Point(108, 72);
             this.cboCategoriaCat.Name = "cboCategoriaCat";
             this.cboCategoriaCat.Size = new System.Drawing.Size(141, 34);
-            this.cboCategoriaCat.TabIndex = 8;
+            this.cboCategoriaCat.TabIndex = 1;
             // 
             // gbxBusquedaAvanzada
             // 
@@ -256,7 +256,7 @@
             this.btnBuscarCat.Location = new System.Drawing.Point(6, 189);
             this.btnBuscarCat.Name = "btnBuscarCat";
             this.btnBuscarCat.Size = new System.Drawing.Size(243, 40);
-            this.btnBuscarCat.TabIndex = 13;
+            this.btnBuscarCat.TabIndex = 4;
             this.btnBuscarCat.Text = "Buscar";
             this.btnBuscarCat.UseVisualStyleBackColor = true;
             this.btnBuscarCat.Click += new System.EventHandler(this.btnBuscarCat_Click);
@@ -267,7 +267,7 @@
             this.txtPrecioMaximo.MaxLength = 38;
             this.txtPrecioMaximo.Name = "txtPrecioMaximo";
             this.txtPrecioMaximo.Size = new System.Drawing.Size(141, 32);
-            this.txtPrecioMaximo.TabIndex = 11;
+            this.txtPrecioMaximo.TabIndex = 3;
             // 
             // txtPrecioMinimo
             // 
@@ -275,7 +275,7 @@
             this.txtPrecioMinimo.MaxLength = 38;
             this.txtPrecioMinimo.Name = "txtPrecioMinimo";
             this.txtPrecioMinimo.Size = new System.Drawing.Size(141, 32);
-            this.txtPrecioMinimo.TabIndex = 10;
+            this.txtPrecioMinimo.TabIndex = 2;
             // 
             // cboMarcaCat
             // 
@@ -285,7 +285,7 @@
             this.cboMarcaCat.Location = new System.Drawing.Point(108, 29);
             this.cboMarcaCat.Name = "cboMarcaCat";
             this.cboMarcaCat.Size = new System.Drawing.Size(141, 34);
-            this.cboMarcaCat.TabIndex = 8;
+            this.cboMarcaCat.TabIndex = 0;
             // 
             // lbMaximo
             // 
@@ -307,7 +307,7 @@
             this.btnTodoCat.Location = new System.Drawing.Point(1, 280);
             this.btnTodoCat.Name = "btnTodoCat";
             this.btnTodoCat.Size = new System.Drawing.Size(118, 37);
-            this.btnTodoCat.TabIndex = 10;
+            this.btnTodoCat.TabIndex = 5;
             this.btnTodoCat.Text = "Traer Todo";
             this.btnTodoCat.UseVisualStyleBackColor = true;
             this.btnTodoCat.Click += new System.EventHandler(this.btnTodoCat_Click);
@@ -334,7 +334,7 @@
             this.btnDetalles.Location = new System.Drawing.Point(0, 150);
             this.btnDetalles.Name = "btnDetalles";
             this.btnDetalles.Size = new System.Drawing.Size(119, 40);
-            this.btnDetalles.TabIndex = 4;
+            this.btnDetalles.TabIndex = 3;
             this.btnDetalles.Text = "Detalles";
             this.btnDetalles.UseVisualStyleBackColor = false;
             this.btnDetalles.Click += new System.EventHandler(this.btnDetalles_Click);
@@ -380,7 +380,7 @@
             this.btnBusquedaAvanzada.Location = new System.Drawing.Point(0, 217);
             this.btnBusquedaAvanzada.Name = "btnBusquedaAvanzada";
             this.btnBusquedaAvanzada.Size = new System.Drawing.Size(119, 65);
-            this.btnBusquedaAvanzada.TabIndex = 5;
+            this.btnBusquedaAvanzada.TabIndex = 4;
             this.btnBusquedaAvanzada.Text = "Busqueda\r\nAvanzada";
             this.btnBusquedaAvanzada.UseVisualStyleBackColor = false;
             this.btnBusquedaAvanzada.Click += new System.EventHandler(this.btnBusquedaAvanzada_Click);

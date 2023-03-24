@@ -119,7 +119,7 @@
             this.btnAceptarAlta.Location = new System.Drawing.Point(436, 0);
             this.btnAceptarAlta.Name = "btnAceptarAlta";
             this.btnAceptarAlta.Size = new System.Drawing.Size(150, 55);
-            this.btnAceptarAlta.TabIndex = 7;
+            this.btnAceptarAlta.TabIndex = 0;
             this.btnAceptarAlta.Text = "Aceptar";
             this.btnAceptarAlta.UseVisualStyleBackColor = true;
             this.btnAceptarAlta.Click += new System.EventHandler(this.btnAceptarAlta_Click);
@@ -134,7 +134,7 @@
             this.btnCancelarAlta.Location = new System.Drawing.Point(599, 0);
             this.btnCancelarAlta.Name = "btnCancelarAlta";
             this.btnCancelarAlta.Size = new System.Drawing.Size(150, 55);
-            this.btnCancelarAlta.TabIndex = 8;
+            this.btnCancelarAlta.TabIndex = 1;
             this.btnCancelarAlta.Text = "Cancelar";
             this.btnCancelarAlta.UseVisualStyleBackColor = true;
             this.btnCancelarAlta.Click += new System.EventHandler(this.btnCancelarAlta_Click);
@@ -175,7 +175,7 @@
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(590, 131);
-            this.txtDescripcion.TabIndex = 2;
+            this.txtDescripcion.TabIndex = 6;
             // 
             // txtImagenUrl
             // 
@@ -194,7 +194,7 @@
             this.txtPrecio.MaxLength = 38;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(259, 35);
-            this.txtPrecio.TabIndex = 6;
+            this.txtPrecio.TabIndex = 2;
             // 
             // cboMarca
             // 

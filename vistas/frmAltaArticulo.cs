@@ -98,7 +98,6 @@ namespace vistas
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
-                articulo.ImagenUrl = txtImagenUrl.Text;
                 if (txtPrecio.Text.Length > 0)
                 {
                     if (validarPrecios(txtPrecio.Text))
@@ -121,6 +120,15 @@ namespace vistas
                     validacion = false;
                 }
 
+                DialogResult = DialogResult.OK;
+                if (archivo != null && !(txtImagenUrl.Text.ToLower().Contains("http")) && txtImagenUrl.Text.Length > 0)
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName, true);
+                    articulo.ImagenUrl = ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName;
+                }
+                else 
+                    articulo.ImagenUrl = txtImagenUrl.Text;
+
                 if (validacion)
                 {
                     if (articulo.Id != 0)
@@ -133,9 +141,7 @@ namespace vistas
                         artNegocio.agregar(articulo);
                         MessageBox.Show("Agregado exitosamente");
                     }
-                    DialogResult = DialogResult.OK;
-                    if (archivo != null && !(txtImagenUrl.Text.ToLower().Contains("http")))
-                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Marca.Descripcion + articulo.Codigo + archivo.SafeFileName);
+                    
                     Close();
                 }
             }
