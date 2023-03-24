@@ -89,7 +89,7 @@ namespace vistas
             frmAltaArticulo altaAgregar = new frmAltaArticulo();
             DialogResult altaRespuesta= altaAgregar.ShowDialog();
             if (altaRespuesta == DialogResult.OK)
-                cargar();             
+               cargar();             
         }
         private void btnCatModificar_Click(object sender, EventArgs e)
         {

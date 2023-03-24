@@ -120,17 +120,17 @@ namespace vistas
                     validacion = false;
                 }
 
-                DialogResult = DialogResult.OK;
-                if (archivo != null && !(txtImagenUrl.Text.ToLower().Contains("http")) && txtImagenUrl.Text.Length > 0)
-                {
-                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName, true);
-                    articulo.ImagenUrl = ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName;
-                }
-                else 
-                    articulo.ImagenUrl = txtImagenUrl.Text;
-
                 if (validacion)
                 {
+                    DialogResult = DialogResult.OK;
+                    if (archivo != null && !(txtImagenUrl.Text.ToLower().Contains("http")) && txtImagenUrl.Text.Length > 0)
+                    {
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName, true);
+                        articulo.ImagenUrl = ConfigurationManager.AppSettings["carpeta-imagenes"] + articulo.Codigo + "-" + articulo.Nombre + "-" + archivo.SafeFileName;
+                    }
+                    else
+                        articulo.ImagenUrl = txtImagenUrl.Text;
+
                     if (articulo.Id != 0)
                     {
                         artNegocio.modificar(articulo);
@@ -141,7 +141,6 @@ namespace vistas
                         artNegocio.agregar(articulo);
                         MessageBox.Show("Agregado exitosamente");
                     }
-                    
                     Close();
                 }
             }
